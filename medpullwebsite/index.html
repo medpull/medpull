@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MedPull — Translate, chat, and fill forms</title>
+    <meta name="description" content="Upload English forms, translate them to your language, chat with AI to understand them, and produce completed English forms fast." />
+    <meta property="og:title" content="MedPull — Translate, chat, and fill forms" />
+    <meta property="og:description" content="A simpler way to complete forms: translation, AI guidance, and autofill." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://your-domain.example" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary fixed-top border-bottom">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#home">MedPull</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="demo.html">Demo</a></li>
+            <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+            <li class="nav-item"><a class="nav-link" href="#how">How it works</a></li>
+            <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+            <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          </ul>
+          <div class="d-flex gap-2">
+            <button id="themeToggle" class="btn btn-outline-secondary btn-sm" type="button" aria-label="Toggle theme">Dark mode</button>
+            <a class="btn btn-primary btn-sm" href="#contact">Request demo</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <header id="home" class="py-6 py-lg-7 bg-gradient-hero text-center text-lg-start">
+      <div class="container position-relative">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6 order-2 order-lg-1">
+            <h1 class="display-5 fw-bold lh-tight mb-3">Translate, understand, and fill forms—fast</h1>
+            <p class="lead mb-4">Upload English forms, get instant translations, chat with AI for clarity, and generate completed English forms ready to submit.</p>
+            <div class="d-flex flex-column flex-sm-row gap-3">
+              <a href="demo.html" class="btn btn-primary btn-lg px-4">Try the demo</a>
+              <a href="#how" class="btn btn-outline-primary btn-lg px-4">See how it works</a>
+            </div>
+            <form id="newsletterForm" class="newsletter mt-4" novalidate>
+              <div class="input-group input-group-lg">
+                <input id="newsletterEmail" type="email" class="form-control" placeholder="Work email" aria-label="Work email" required />
+                <button class="btn btn-success" type="submit">Join waitlist</button>
+              </div>
+              <div class="form-text">No spam. Unsubscribe anytime.</div>
+              <div id="newsletterFeedback" class="small mt-2"></div>
+            </form>
+          </div>
+          <div class="col-lg-6 order-1 order-lg-2 text-center">
+            <div class="hero-card shadow-sm">
+              <div class="p-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <span class="badge text-bg-success">Live</span>
+                  <span class="text-muted small">Updated just now</span>
+                </div>
+                <div class="row text-start g-3">
+                  <div class="col-6">
+                    <div class="stat">
+                      <div class="stat-label">Languages</div>
+                      <div class="stat-value">20+</div>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="stat">
+                      <div class="stat-label">Users assisted</div>
+                      <div class="stat-value">10k+</div>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="stat stat-accent">
+                      <div class="stat-label">Avg time saved per form</div>
+                      <div class="stat-value">12–20 min</div>
+                      <div class="small text-muted">based on internal tests</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="hero-illustration"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- LOGOS -->
+    <section class="py-5 bg-body">
+      <div class="container text-center">
+        <p class="text-muted mb-4">Trusted by care teams and community partners</p>
+        <div class="row g-4 align-items-center justify-content-center logo-row">
+          <div class="col-6 col-md-2"><div class="logo placeholder-logo">CARE+</div></div>
+          <div class="col-6 col-md-2"><div class="logo placeholder-logo">HealthyCo</div></div>
+          <div class="col-6 col-md-2"><div class="logo placeholder-logo">RxTrust</div></div>
+          <div class="col-6 col-md-2"><div class="logo placeholder-logo">CHC Net</div></div>
+          <div class="col-6 col-md-2"><div class="logo placeholder-logo">OpenHealth</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features" class="py-6">
+      <div class="container">
+        <div class="row mb-4 align-items-end">
+          <div class="col-lg-8">
+            <h2 class="fw-bold mb-2">Built to simplify forms for everyone</h2>
+            <p class="text-muted">Everything you need to translate, understand, and complete forms with confidence.</p>
+          </div>
+        </div>
+        <div id="featuresGrid" class="row g-4"></div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how" class="py-6 bg-body-tertiary">
+      <div class="container">
+        <div class="row mb-4">
+          <div class="col-lg-8">
+            <h2 class="fw-bold mb-2">How it works</h2>
+            <p class="text-muted">From upload to completed form in minutes.</p>
+          </div>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="card h-100">
+              <div class="card-body p-4">
+                <span class="step">1</span>
+                <h5 class="card-title mt-2">Upload a form (PDF or photo)</h5>
+                <p class="card-text text-muted">We clean up the file and detect structure for easier reading and filling.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card h-100">
+              <div class="card-body p-4">
+                <span class="step">2</span>
+                <h5 class="card-title mt-2">Translate and ask questions</h5>
+                <p class="card-text text-muted">Read the form in your language and chat with AI about any section.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card h-100">
+              <div class="card-body p-4">
+                <span class="step">3</span>
+                <h5 class="card-title mt-2">Autofill and export</h5>
+                <p class="card-text text-muted">We map your answers to the English form and export a clean copy.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="py-6 bg-body-tertiary">
+      <div class="container">
+        <div class="row mb-4">
+          <div class="col-lg-8">
+            <h2 class="fw-bold mb-2">What our users say</h2>
+            <p class="text-muted">Care teams and patients love the clarity and speed.</p>
+          </div>
+        </div>
+        <div class="position-relative">
+          <div id="testimonialsTrack" class="testimonials-track"></div>
+          <div class="d-flex justify-content-center gap-3 mt-3">
+            <button class="btn btn-outline-secondary btn-sm" id="prevTestimonial" aria-label="Previous">‹</button>
+            <button class="btn btn-outline-secondary btn-sm" id="nextTestimonial" aria-label="Next">›</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-6">
+      <div class="container">
+        <div class="row mb-4">
+          <div class="col-lg-8">
+            <h2 class="fw-bold mb-2">Frequently asked questions</h2>
+            <p class="text-muted">Answers about translation, privacy, and form output.</p>
+          </div>
+        </div>
+        <div class="accordion" id="faqAccordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="q1"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a1" aria-expanded="true" aria-controls="a1">Which languages do you support?</button></h2>
+            <div id="a1" class="accordion-collapse collapse show" aria-labelledby="q1" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">We support Spanish, Chinese (Simplified), Vietnamese, Arabic, Hindi, and more. Tell us if you need another language.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="q2"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a2" aria-expanded="false" aria-controls="a2">Is my data private?</button></h2>
+            <div id="a2" class="accordion-collapse collapse" aria-labelledby="q2" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">No account is required to try the demo. Files are processed securely; enterprise plans offer HIPAA-aligned options and BAAs.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="q3"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a3" aria-expanded="false" aria-controls="a3">Can you fill the official English form?</button></h2>
+            <div id="a3" class="accordion-collapse collapse" aria-labelledby="q3" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">Yes. After translating and answering your questions, we produce a completed English form (and an optional translated copy) ready to print or submit.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="py-6 bg-body-tertiary">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="card shadow-sm">
+              <div class="card-body p-4 p-lg-5">
+                <h2 class="fw-bold mb-3">Talk to us</h2>
+                <p class="text-muted mb-4">Have questions or want a demo? We’d love to hear from you.</p>
+                <form id="contactForm" novalidate>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label for="name" class="form-label">Name</label>
+                      <input id="name" name="name" type="text" class="form-control" required />
+                    </div>
+                    <div class="col-md-6">
+                      <label for="email" class="form-label">Email</label>
+                      <input id="email" name="email" type="email" class="form-control" required />
+                    </div>
+                    <div class="col-12">
+                      <label for="company" class="form-label">Organization</label>
+                      <input id="company" name="company" type="text" class="form-control" />
+                    </div>
+                    <div class="col-12">
+                      <label for="message" class="form-label">Message</label>
+                      <textarea id="message" name="message" class="form-control" rows="4" required></textarea>
+                    </div>
+                    <div class="col-12 d-flex align-items-center justify-content-between">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="consent" required />
+                        <label class="form-check-label" for="consent">I agree to the processing of my data.</label>
+                      </div>
+                      <button class="btn btn-primary" type="submit">Send</button>
+                    </div>
+                  </div>
+                  <div id="contactFeedback" class="small mt-3"></div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-5 border-top">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md-6">
+            <a class="navbar-brand fw-bold" href="#home">MedPull</a>
+            <p class="text-muted mt-2">Connecting patients to affordable medications through transparent, community-first data.</p>
+          </div>
+          <div class="col-6 col-md-3">
+            <h6 class="fw-semibold">Product</h6>
+            <ul class="list-unstyled">
+              <li><a class="link-body-emphasis" href="#features">Features</a></li>
+              <li><a class="link-body-emphasis" href="#faq">FAQ</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md-3">
+            <h6 class="fw-semibold">Company</h6>
+            <ul class="list-unstyled">
+              <li><a class="link-body-emphasis" href="#contact">Contact</a></li>
+              <li><a class="link-body-emphasis" href="#">Privacy</a></li>
+              <li><a class="link-body-emphasis" href="#">Terms</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center pt-4 mt-4 border-top">
+          <small class="text-muted">© <span id="year"></span> MedPull. All rights reserved.</small>
+          <div class="d-flex gap-3">
+            <a class="link-secondary" href="#" aria-label="Twitter">Twitter</a>
+            <a class="link-secondary" href="#" aria-label="LinkedIn">LinkedIn</a>
+            <a class="link-secondary" href="#" aria-label="GitHub">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="assets/js/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

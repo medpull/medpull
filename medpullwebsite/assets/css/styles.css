@@ -1,0 +1,60 @@
+/* Base theme */
+:root {
+  --brand: #2563eb; /* primary */
+  --brand-600: #1d4ed8;
+  --brand-50: #eef2ff;
+}
+
+html, body { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; }
+
+/***** Spacing helpers *****/
+.py-6 { padding-top: 4.5rem; padding-bottom: 4.5rem; }
+.py-7 { padding-top: 6rem; padding-bottom: 6rem; }
+
+/***** Hero *****/
+.bg-gradient-hero {
+  background: radial-gradient(1200px 400px at 20% -10%, rgba(37,99,235,.15), transparent 60%),
+              radial-gradient(800px 300px at 80% 0%, rgba(16,185,129,.12), transparent 60%),
+              linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.02) 100%);
+}
+.hero-card { border-radius: 1rem; background: var(--bs-body-bg); overflow: hidden; }
+.hero-illustration { height: 160px; background: repeating-linear-gradient(45deg, rgba(37,99,235,.12), rgba(37,99,235,.12) 10px, transparent 10px, transparent 20px); }
+.stat { padding: .75rem 1rem; border: 1px solid var(--bs-border-color); border-radius: .75rem; }
+.stat-accent { background: rgba(37,99,235,.06); border-color: rgba(37,99,235,.25); }
+
+/***** Logos *****/
+.logo { height: 44px; display: grid; place-items: center; color: var(--bs-secondary-color); border: 1px dashed var(--bs-border-color); border-radius: .5rem; background: var(--bs-tertiary-bg); font-weight: 600; }
+.logo-row .col-6 { max-width: 150px; }
+
+/***** Steps *****/
+.step { width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--brand); color: #fff; font-weight: 700; }
+
+/***** Testimonials *****/
+.testimonials-track { display: grid; grid-auto-flow: column; grid-auto-columns: min(100%, 560px); gap: 1rem; overflow: hidden; scroll-behavior: smooth; }
+.testimonial { border: 1px solid var(--bs-border-color); border-radius: .75rem; background: var(--bs-body-bg); padding: 1.25rem; }
+.testimonial .quote { font-size: 1.05rem; }
+
+/***** Pricing *****/
+.pricing-card { border-radius: .75rem; overflow: hidden; }
+.pricing-card .price { font-size: 2.25rem; font-weight: 800; }
+.pricing-card .period { color: var(--bs-secondary-color); font-size: .95rem; }
+.pricing-card.featured { border: 2px solid var(--brand); box-shadow: 0 10px 30px rgba(37,99,235,.15); }
+
+/***** Forms *****/
+.newsletter .form-control { border-top-left-radius: .5rem; border-bottom-left-radius: .5rem; }
+.newsletter .btn { border-top-right-radius: .5rem; border-bottom-right-radius: .5rem; }
+
+/***** Dark mode adjustments *****/
+[data-bs-theme="dark"] .bg-gradient-hero {
+  background: radial-gradient(1200px 400px at 20% -10%, rgba(37,99,235,.18), transparent 60%),
+              radial-gradient(800px 300px at 80% 0%, rgba(16,185,129,.16), transparent 60%),
+              linear-gradient(180deg, rgba(255,255,255,.02) 0%, rgba(255,255,255,.04) 100%);
+}
+
+/***** Utilities *****/
+.btn-primary { background-color: var(--brand); border-color: var(--brand); }
+.btn-primary:hover { background-color: var(--brand-600); border-color: var(--brand-600); }
+.link-brand { color: var(--brand); }
+
+/* Fix top spacing below fixed navbar */
+body { padding-top: 4.25rem; }
