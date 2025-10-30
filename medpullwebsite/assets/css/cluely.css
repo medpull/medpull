@@ -61,6 +61,7 @@ html, body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Hel
 
 /* Utilities */
 .py-6 { padding-top: 3.5rem !important; padding-bottom: 3.5rem !important; }
+.with-fixed-nav { padding-top: 4.25rem; }
 
 /* Layering */
 .hero-landing + section .container, .hero-landing nav { isolation: isolate; }
