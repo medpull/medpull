@@ -50,9 +50,9 @@
     const col = document.createElement('div');
     col.className = 'col-12 col-md-6 col-lg-4';
     col.innerHTML = `
-      <div class="card h-100">
+      <div class="card h-100 playful-card" data-tilt>
         <div class="card-body p-4">
-          <div class="d-inline-flex align-items-center justify-content-center rounded-3 mb-3" style="width:44px;height:44px;background:rgba(37,99,235,.12)">${icon}</div>
+          <div class="d-inline-flex align-items-center justify-content-center rounded-3 mb-3" style="width:44px;height:44px;background:var(--animated-gradient);background-size:200% 200%;animation:gradientShift 20s ease-in-out infinite;color:#fff">${icon}</div>
           <h5 class="card-title">${title}</h5>
           <p class="card-text text-muted">${body}</p>
         </div>
@@ -170,5 +170,44 @@
       out.textContent = 'Something went wrong. Please try again later.';
       out.className = 'text-danger';
     }
+  });
+  // Accent color cycle
+  // Tilt effect
+  function bindTilt(el){
+    el.addEventListener('pointermove', (e) => {
+      const r = el.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width;
+      const y = (e.clientY - r.top) / r.height;
+      const rx = (y - 0.5) * 6; // rotateX
+      const ry = (0.5 - x) * 6; // rotateY
+      el.style.transform = `perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+    });
+    el.addEventListener('pointerleave', () => { el.style.transform = ''; });
+  }
+  $$('[data-tilt]').forEach(bindTilt);
+
+  // Confetti micro-interaction
+  function confettiBurstAt(x, y){
+    const shapes = ['✨','★','●','◆','◦'];
+    for (let i = 0; i < 16; i++){
+      const s = document.createElement('span');
+      s.className = 'confetti-piece';
+      s.textContent = shapes[Math.floor(Math.random() * shapes.length)];
+      s.style.left = `${x}px`; s.style.top = `${y}px`;
+      const dx = (Math.random() - 0.5) * 220;
+      const dy = (Math.random() * 240) - 60;
+      const rot = `${(Math.random() - 0.5) * 720}deg`;
+      s.style.setProperty('--dx', `${dx}px`);
+      s.style.setProperty('--dy', `${dy}px`);
+      s.style.setProperty('--rot', rot);
+      document.body.appendChild(s);
+      setTimeout(() => s.remove(), 950);
+    }
+  }
+  $$('[data-confetti]').forEach(el => {
+    el.addEventListener('click', (e) => {
+      const r = el.getBoundingClientRect();
+      confettiBurstAt(r.left + r.width/2 + window.scrollX, r.top + r.height/2 + window.scrollY);
+    });
   });
 })();

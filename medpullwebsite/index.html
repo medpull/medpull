@@ -3,23 +3,23 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>MedPull — Translate, chat, and fill forms</title>
-    <meta name="description" content="Upload English forms, translate them to your language, chat with AI to understand them, and produce completed English forms fast." />
-    <meta property="og:title" content="MedPull — Translate, chat, and fill forms" />
-    <meta property="og:description" content="A simpler way to complete forms: translation, AI guidance, and autofill." />
+    <title>MedPull — Live AI form assistant</title>
+    <meta name="description" content="Your AI assistant for forms — translate instantly, ask questions in real time, and export clean, completed English forms." />
+    <meta property="og:title" content="MedPull — Live AI form assistant" />
+    <meta property="og:description" content="Translate, chat, and autofill forms." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://your-domain.example" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=EB+Garamond:wght@500;600&display=swap" rel="stylesheet" />
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="assets/css/cluely.css" />
   </head>
   <body>
     <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary fixed-top border-bottom">
+    <nav class="navbar navbar-expand-lg site-nav fixed-top">
       <div class="container">
         <a class="navbar-brand fw-bold" href="#home">MedPull</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,66 +32,62 @@
             <li class="nav-item"><a class="nav-link" href="#how">How it works</a></li>
             <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
             <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
-            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
           </ul>
-          <div class="d-flex gap-2">
-            <button id="themeToggle" class="btn btn-outline-secondary btn-sm" type="button" aria-label="Toggle theme">Dark mode</button>
-            <a class="btn btn-primary btn-sm" href="#contact">Request demo</a>
+          <div class="d-flex gap-2 align-items-center">
+            <a class="btn btn-gradient btn-sm" href="https://app.medpull.com" target="_blank" rel="noopener">Open Web App</a>
+            <a class="btn btn-outline-primary btn-sm rounded-pill" href="demo.html">Try demo</a>
           </div>
         </div>
       </div>
     </nav>
 
     <!-- HERO -->
-    <header id="home" class="py-6 py-lg-7 bg-gradient-hero text-center text-lg-start">
+    <header id="home" class="hero-landing text-center text-lg-start">
       <div class="container position-relative">
         <div class="row align-items-center g-5">
           <div class="col-lg-6 order-2 order-lg-1">
-            <h1 class="display-5 fw-bold lh-tight mb-3">Translate, understand, and fill forms—fast</h1>
-            <p class="lead mb-4">Upload English forms, get instant translations, chat with AI for clarity, and generate completed English forms ready to submit.</p>
-            <div class="d-flex flex-column flex-sm-row gap-3">
-              <a href="demo.html" class="btn btn-primary btn-lg px-4">Try the demo</a>
-              <a href="#how" class="btn btn-outline-primary btn-lg px-4">See how it works</a>
+            <h1 class="hero-title mb-3">Your AI assistant for forms</h1>
+            <p class="hero-subtitle">Translates instantly, answers questions in real time, and exports clean English forms ready to submit.</p>
+            <div class="d-flex flex-column flex-sm-row gap-3 mt-4">
+              <a href="https://app.medpull.com" class="btn btn-gradient btn-lg px-4" target="_blank" rel="noopener">Open Web App</a>
+              <a href="#how" class="btn btn-outline-light btn-lg px-4 rounded-pill">See how it works</a>
             </div>
-            <form id="newsletterForm" class="newsletter mt-4" novalidate>
-              <div class="input-group input-group-lg">
-                <input id="newsletterEmail" type="email" class="form-control" placeholder="Work email" aria-label="Work email" required />
-                <button class="btn btn-success" type="submit">Join waitlist</button>
-              </div>
-              <div class="form-text">No spam. Unsubscribe anytime.</div>
-              <div id="newsletterFeedback" class="small mt-2"></div>
-            </form>
+
+            <div class="ask-bar mt-4">
+              <span class="prefix">Ask,</span>
+              <span class="prompt" id="askPrompt">How do I fill Section 3?</span>
+              <span class="kbd">⌘⏎</span>
+            </div>
+            <div class="text-muted small mt-2">No account required to try.</div>
           </div>
-          <div class="col-lg-6 order-1 order-lg-2 text-center">
-            <div class="hero-card shadow-sm">
-              <div class="p-4">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <span class="badge text-bg-success">Live</span>
-                  <span class="text-muted small">Updated just now</span>
+
+          <div class="col-lg-6 order-1 order-lg-2">
+            <div class="hero-preview">
+              <div class="preview-top d-flex justify-content-between align-items-center">
+                <span class="badge bg-success-subtle text-success-emphasis">Live</span>
+                <span class="small text-muted">Updated just now</span>
+              </div>
+              <div class="row g-3 mt-2">
+                <div class="col-6">
+                  <div class="stat">
+                    <div class="stat-label">Languages</div>
+                    <div class="stat-value">20+</div>
+                  </div>
                 </div>
-                <div class="row text-start g-3">
-                  <div class="col-6">
-                    <div class="stat">
-                      <div class="stat-label">Languages</div>
-                      <div class="stat-value">20+</div>
-                    </div>
+                <div class="col-6">
+                  <div class="stat">
+                    <div class="stat-label">Forms completed</div>
+                    <div class="stat-value">12k+</div>
                   </div>
-                  <div class="col-6">
-                    <div class="stat">
-                      <div class="stat-label">Users assisted</div>
-                      <div class="stat-value">10k+</div>
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <div class="stat stat-accent">
-                      <div class="stat-label">Avg time saved per form</div>
-                      <div class="stat-value">12–20 min</div>
-                      <div class="small text-muted">based on internal tests</div>
-                    </div>
+                </div>
+                <div class="col-12">
+                  <div class="stat stat-accent">
+                    <div class="stat-label">Avg time saved per form</div>
+                    <div class="stat-value">12–20 min</div>
+                    <div class="small text-white-50">based on internal tests</div>
                   </div>
                 </div>
               </div>
-              <div class="hero-illustration"></div>
             </div>
           </div>
         </div>
@@ -136,7 +132,7 @@
         </div>
         <div class="row g-4">
           <div class="col-md-4">
-            <div class="card h-100">
+            <div class="card h-100 playful-card">
               <div class="card-body p-4">
                 <span class="step">1</span>
                 <h5 class="card-title mt-2">Upload a form (PDF or photo)</h5>
@@ -145,7 +141,7 @@
             </div>
           </div>
           <div class="col-md-4">
-            <div class="card h-100">
+            <div class="card h-100 playful-card">
               <div class="card-body p-4">
                 <span class="step">2</span>
                 <h5 class="card-title mt-2">Translate and ask questions</h5>
@@ -154,7 +150,7 @@
             </div>
           </div>
           <div class="col-md-4">
-            <div class="card h-100">
+            <div class="card h-100 playful-card">
               <div class="card-body p-4">
                 <span class="step">3</span>
                 <h5 class="card-title mt-2">Autofill and export</h5>
@@ -165,7 +161,6 @@
         </div>
       </div>
     </section>
-
 
     <!-- TESTIMONIALS -->
     <section id="testimonials" class="py-6 bg-body-tertiary">
@@ -250,7 +245,7 @@
                         <input class="form-check-input" type="checkbox" value="" id="consent" required />
                         <label class="form-check-label" for="consent">I agree to the processing of my data.</label>
                       </div>
-                      <button class="btn btn-primary" type="submit">Send</button>
+                      <button class="btn btn-gradient" type="submit">Send</button>
                     </div>
                   </div>
                   <div id="contactFeedback" class="small mt-3"></div>
@@ -268,7 +263,7 @@
         <div class="row g-4">
           <div class="col-md-6">
             <a class="navbar-brand fw-bold" href="#home">MedPull</a>
-            <p class="text-muted mt-2">Connecting patients to affordable medications through transparent, community-first data.</p>
+            <p class="text-muted mt-2">Helping everyone understand and complete forms—translated, guided, and ready to submit.</p>
           </div>
           <div class="col-6 col-md-3">
             <h6 class="fw-semibold">Product</h6>
@@ -297,7 +292,7 @@
       </div>
     </footer>
 
-    <script src="assets/js/app.js"></script>
+    <script src="assets/js/cluely.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

@@ -3,6 +3,9 @@
   --brand: #2563eb; /* primary */
   --brand-600: #1d4ed8;
   --brand-50: #eef2ff;
+  --accent-start: #7c3aed; /* default gradient start */
+  --accent-end: #06b6d4;   /* default gradient end */
+  --animated-gradient: linear-gradient(90deg, #7c3aed, #06b6d4, #10b981, #3b82f6, #f59e0b, #ef4444, #e11d48, #8b5cf6, #7c3aed);
 }
 
 html, body { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; }
@@ -13,32 +16,36 @@ html, body { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, "
 
 /***** Hero *****/
 .bg-gradient-hero {
-  background: radial-gradient(1200px 400px at 20% -10%, rgba(37,99,235,.15), transparent 60%),
-              radial-gradient(800px 300px at 80% 0%, rgba(16,185,129,.12), transparent 60%),
+  background: radial-gradient(1200px 400px at 20% -10%, color-mix(in oklab, var(--accent-start) 20%, transparent), transparent 60%),
+              radial-gradient(800px 300px at 80% 0%, color-mix(in oklab, var(--accent-end) 16%, transparent), transparent 60%),
               linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.02) 100%);
 }
-.hero-card { border-radius: 1rem; background: var(--bs-body-bg); overflow: hidden; }
-.hero-illustration { height: 160px; background: repeating-linear-gradient(45deg, rgba(37,99,235,.12), rgba(37,99,235,.12) 10px, transparent 10px, transparent 20px); }
+.hero-card { border-radius: 1rem; background: var(--bs-body-bg); overflow: hidden; backdrop-filter: saturate(120%) blur(4px); }
+.hero-illustration { height: 160px; background: repeating-linear-gradient(45deg, color-mix(in oklab, var(--accent-start) 18%, transparent), color-mix(in oklab, var(--accent-start) 18%, transparent) 10px, transparent 10px, transparent 20px); }
 .stat { padding: .75rem 1rem; border: 1px solid var(--bs-border-color); border-radius: .75rem; }
-.stat-accent { background: rgba(37,99,235,.06); border-color: rgba(37,99,235,.25); }
+.stat-accent { background: color-mix(in oklab, var(--accent-start) 6%, transparent); border-color: color-mix(in oklab, var(--accent-start) 25%, var(--bs-border-color)); }
+
+/* Hero decorative blobs */
+.hero-blobs { position: absolute; inset: -80px 0 0 0; pointer-events: none; z-index: 0; }
+.blob { position: absolute; width: 280px; height: 280px; filter: blur(28px); opacity: .5; border-radius: 50%; mix-blend-mode: multiply; animation: floaty 16s ease-in-out infinite, hue 60s linear infinite; }
+@keyframes hue { 0%{ filter: blur(28px) hue-rotate(0deg);} 50%{ filter: blur(28px) hue-rotate(180deg);} 100%{ filter: blur(28px) hue-rotate(360deg);} }
+.blob.b1 { left: -60px; top: -40px; background: radial-gradient(closest-side, var(--accent-start), transparent); animation-delay: 0s; }
+.blob.b2 { right: 10%; top: -60px; background: radial-gradient(closest-side, var(--accent-end), transparent); animation-delay: 2s; }
+.blob.b3 { left: 40%; top: 120px; background: radial-gradient(closest-side, color-mix(in oklab, var(--accent-start) 60%, var(--accent-end)), transparent); animation-delay: 4s; }
+@keyframes floaty { 0%,100%{ transform: translateY(0) scale(1);} 50%{ transform: translateY(18px) scale(1.06);} }
 
 /***** Logos *****/
 .logo { height: 44px; display: grid; place-items: center; color: var(--bs-secondary-color); border: 1px dashed var(--bs-border-color); border-radius: .5rem; background: var(--bs-tertiary-bg); font-weight: 600; }
 .logo-row .col-6 { max-width: 150px; }
 
 /***** Steps *****/
-.step { width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--brand); color: #fff; font-weight: 700; }
+.step { width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--brand); color: #fff; font-weight: 700; box-shadow: 0 6px 16px rgba(0,0,0,.06); }
 
 /***** Testimonials *****/
 .testimonials-track { display: grid; grid-auto-flow: column; grid-auto-columns: min(100%, 560px); gap: 1rem; overflow: hidden; scroll-behavior: smooth; }
-.testimonial { border: 1px solid var(--bs-border-color); border-radius: .75rem; background: var(--bs-body-bg); padding: 1.25rem; }
+.testimonial { border: 1px solid var(--bs-border-color); border-radius: .9rem; background: var(--bs-body-bg); padding: 1.25rem; transition: transform .2s ease; }
+.testimonial:hover { transform: translateY(-2px); }
 .testimonial .quote { font-size: 1.05rem; }
-
-/***** Pricing *****/
-.pricing-card { border-radius: .75rem; overflow: hidden; }
-.pricing-card .price { font-size: 2.25rem; font-weight: 800; }
-.pricing-card .period { color: var(--bs-secondary-color); font-size: .95rem; }
-.pricing-card.featured { border: 2px solid var(--brand); box-shadow: 0 10px 30px rgba(37,99,235,.15); }
 
 /***** Forms *****/
 .newsletter .form-control { border-top-left-radius: .5rem; border-bottom-left-radius: .5rem; }
@@ -46,8 +53,8 @@ html, body { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, "
 
 /***** Dark mode adjustments *****/
 [data-bs-theme="dark"] .bg-gradient-hero {
-  background: radial-gradient(1200px 400px at 20% -10%, rgba(37,99,235,.18), transparent 60%),
-              radial-gradient(800px 300px at 80% 0%, rgba(16,185,129,.16), transparent 60%),
+  background: radial-gradient(1200px 400px at 20% -10%, color-mix(in oklab, var(--accent-start) 24%, transparent), transparent 60%),
+              radial-gradient(800px 300px at 80% 0%, color-mix(in oklab, var(--accent-end) 22%, transparent), transparent 60%),
               linear-gradient(180deg, rgba(255,255,255,.02) 0%, rgba(255,255,255,.04) 100%);
 }
 
@@ -55,6 +62,38 @@ html, body { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, "
 .btn-primary { background-color: var(--brand); border-color: var(--brand); }
 .btn-primary:hover { background-color: var(--brand-600); border-color: var(--brand-600); }
 .link-brand { color: var(--brand); }
+
+/* Capsule buttons and playful micro-interactions */
+.btn-capsule { border-radius: 9999px; padding-inline: 1.25rem; box-shadow: 0 6px 20px color-mix(in oklab, var(--brand) 22%, transparent); transition: transform .15s ease, box-shadow .15s ease; }
+.btn-capsule:hover { transform: translateY(-1px); box-shadow: 0 10px 28px color-mix(in oklab, var(--brand) 28%, transparent); }
+
+/* Animated gradient utility */
+.animated-gradient { background: var(--animated-gradient); background-size: 200% 200%; animation: gradientShift 24s ease-in-out infinite; }
+@keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+/* Gradient text */
+.gradient-text { background: var(--animated-gradient); background-size: 200% 200%; animation: gradientShift 24s ease-in-out infinite; -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+/* Playful gradient-bordered cards */
+.playful-card { border-radius: .9rem; background:
+  linear-gradient(var(--bs-body-bg), var(--bs-body-bg)) padding-box,
+  conic-gradient(from 180deg, var(--accent-start), var(--accent-end), var(--accent-start)) border-box;
+  border: 1px solid transparent; transition: transform .2s ease, box-shadow .2s ease; box-shadow: 0 8px 26px rgba(0,0,0,.06);
+}
+.playful-card:hover { transform: translateY(-2px); box-shadow: 0 14px 38px rgba(0,0,0,.08); }
+
+/* Tilt targets */
+[data-tilt] { will-change: transform; transform-style: preserve-3d; transition: transform .15s ease; }
+
+/* Store badges */
+.store-badges { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+.store-badge { display: inline-flex; align-items: center; gap: .5rem; border-radius: 9999px; padding: .5rem .9rem; font-weight: 600; border: 1px solid var(--bs-border-color); background: var(--bs-body-bg); color: var(--bs-body-color); text-decoration: none; }
+.store-badge.fill { border: none; color: #fff; background: var(--animated-gradient); background-size: 200% 200%; animation: gradientShift 24s ease-in-out infinite; }
+.store-badge .icon { font-size: 1.1em; }
+
+/* Confetti pieces */
+.confetti-piece { position: absolute; z-index: 9999; pointer-events: none; font-size: 14px; animation: confetti 900ms ease-out forwards; }
+@keyframes confetti { to { transform: translate(var(--dx), var(--dy)) rotate(var(--rot)); opacity: 0; } }
 
 /* Fix top spacing below fixed navbar */
 body { padding-top: 4.25rem; }
