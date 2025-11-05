@@ -1,285 +1,298 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
-    <style>
-        body { margin: 0; display: flex; height: 100vh; }
-        #map { flex: 3; height: 100%; }
-        #sidebar {
-            flex: 1;
-            height: 100%;
-            overflow-y: auto;
-            border-left: 1px solid #ccc;
-            padding: 10px;
-            background: #f8f9fa;
-        }
-        .sidebar-header {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        .health-center {
-            margin-bottom: 15px;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background: #fff;
-            cursor: pointer;
-        }
-        .health-center:hover {
-            background: #e9ecef;
-        }
-        .highlight {
-            background: #d1e7ff;
-        }
-        .details {
-            display: none;
-            margin-top: 10px;
-        }
-        .details.expanded {
-            display: block;
-        }
-        #filter {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            z-index: 1000;
-            background: white;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        #filter select {
-            margin: 5px 0;
-        }
-    </style>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Community Health Centers</title>
-</head>
-<body>
-    <div id="filter">
-        <label for="medication-dropdown">Filter by Medication:</label>
-        <select id="medication-dropdown">
-            <option value="">All Medications</option>
-        </select>
-        <label for="sort-dropdown">Sort by:</label>
-        <select id="sort-dropdown">
-            <option value="distance">Distance</option>
-            <option value="price">Price</option>
-        </select>
-    </div>
-    <div id="map"></div>
-    <div id="sidebar">
-        <div class="sidebar-header">Community Health Centers</div>
-        <div id="health-center-list"></div>
-    </div>
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MedPull — Live AI form assistant</title>
+    <meta name="description" content="Your AI assistant for forms — translate instantly, ask questions in real time, and export clean, completed English forms." />
+    <meta property="og:title" content="MedPull — Live AI form assistant" />
+    <meta property="og:description" content="Translate, chat, and autofill forms." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://your-domain.example" />
 
-    <script>
-        const API_KEY = "a80b282e59c8443b86a0e293d599595e";
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=EB+Garamond:wght@500;600&display=swap" rel="stylesheet" />
 
-        var map = L.map('map').setView([29.7604, -95.3698], 12);
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/cluely.css" />
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg site-nav fixed-top">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#home">MedPull</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="demo.html">Demo</a></li>
+            <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+            <li class="nav-item"><a class="nav-link" href="#how">How it works</a></li>
+            <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+            <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+          </ul>
+          <div class="d-flex gap-2 align-items-center">
+            <a class="btn btn-gradient btn-sm" href="https://app.medpull.com" target="_blank" rel="noopener">Open Web App</a>
+            <a class="btn btn-outline-primary btn-sm rounded-pill" href="demo.html">Try demo</a>
+          </div>
+        </div>
+      </div>
+    </nav>
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
+    <!-- HERO -->
+    <header id="home" class="hero-landing text-center text-lg-start">
+      <div class="container position-relative">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6 order-2 order-lg-1">
+            <h1 class="hero-title mb-3">Your AI assistant for forms</h1>
+            <p class="hero-subtitle">Translates instantly, answers questions in real time, and exports clean English forms ready to submit.</p>
+            <div class="d-flex flex-column flex-sm-row gap-3 mt-4">
+              <a href="https://app.medpull.com" class="btn btn-gradient btn-lg px-4" target="_blank" rel="noopener">Open Web App</a>
+              <a href="#how" class="btn btn-outline-light btn-lg px-4 rounded-pill">See how it works</a>
+            </div>
 
-        var redIcon = L.icon({
-            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
-            iconSize: [25, 41],
-            iconAnchor: [12, 41],
-            popupAnchor: [1, -34],
-        });
+            <div class="ask-bar mt-4">
+              <span class="prefix">Ask,</span>
+              <span class="prompt" id="askPrompt">How do I fill Section 3?</span>
+              <span class="kbd">⌘⏎</span>
+            </div>
+            <div class="text-muted small mt-2">No account required to try.</div>
+          </div>
 
-        const healthCenters = {};
-        const inventoryData = {};
-        const markers = {};
+          <div class="col-lg-6 order-1 order-lg-2">
+            <div class="hero-preview">
+              <div class="preview-top d-flex justify-content-between align-items-center">
+                <span class="badge bg-success-subtle text-success-emphasis">Live</span>
+                <span class="small text-muted">Updated just now</span>
+              </div>
+              <div class="row g-3 mt-2">
+                <div class="col-6">
+                  <div class="stat">
+                    <div class="stat-label">Languages</div>
+                    <div class="stat-value">20+</div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="stat">
+                    <div class="stat-label">Forms completed</div>
+                    <div class="stat-value">12k+</div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="stat stat-accent">
+                    <div class="stat-label">Avg time saved per form</div>
+                    <div class="stat-value">12–20 min</div>
+                    <div class="small text-white-50">based on internal tests</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
 
-        function calculateDistance(lat1, lon1, lat2, lon2) {
-            const R = 3958.8; // Radius of the Earth in miles
-            const dLat = (lat2 - lat1) * Math.PI / 180;
-            const dLon = (lon2 - lon1) * Math.PI / 180;
-            const a = 
-                Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-                Math.sin(dLon / 2) * Math.sin(dLon / 2);
-            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-            return (R * c).toFixed(2);
-        }
+    <!-- LOGOS -->
+    <section class="py-5 bg-body">
+      <div class="container text-center">
+        <p class="text-muted mb-4">Trusted by care teams and community partners</p>
+        <div class="row g-4 align-items-center justify-content-center logo-row">
+          <div class="col-6 col-md-2"><div class="logo placeholder-logo">CARE+</div></div>
+          <div class="col-6 col-md-2"><div class="logo placeholder-logo">HealthyCo</div></div>
+          <div class="col-6 col-md-2"><div class="logo placeholder-logo">RxTrust</div></div>
+          <div class="col-6 col-md-2"><div class="logo placeholder-logo">CHC Net</div></div>
+          <div class="col-6 col-md-2"><div class="logo placeholder-logo">OpenHealth</div></div>
+        </div>
+      </div>
+    </section>
 
-        function updateSidebar(filteredCenters, medicationFilter) {
-            const sortBy = document.getElementById('sort-dropdown').value;
-            const sidebarList = document.getElementById('health-center-list');
-            sidebarList.innerHTML = ''; // Clear existing entries
+    <!-- FEATURES -->
+    <section id="features" class="py-6">
+      <div class="container">
+        <div class="row mb-4 align-items-end">
+          <div class="col-lg-8">
+            <h2 class="fw-bold mb-2">Built to simplify forms for everyone</h2>
+            <p class="text-muted">Everything you need to translate, understand, and complete forms with confidence.</p>
+          </div>
+        </div>
+        <div id="featuresGrid" class="row g-4"></div>
+      </div>
+    </section>
 
-            // Sort centers based on the selected criteria
-            const sortedCenters = [...filteredCenters].sort((a, b) => {
-                if (sortBy === 'price' && medicationFilter) {
-                    const priceA = inventoryData[a.name]?.[medicationFilter]?.price || Infinity;
-                    const priceB = inventoryData[b.name]?.[medicationFilter]?.price || Infinity;
-                    return priceA - priceB;
-                }
-                return a.distance - b.distance; // Default to distance
-            });
+    <!-- HOW IT WORKS -->
+    <section id="how" class="py-6 bg-body-tertiary">
+      <div class="container">
+        <div class="row mb-4">
+          <div class="col-lg-8">
+            <h2 class="fw-bold mb-2">How it works</h2>
+            <p class="text-muted">From upload to completed form in minutes.</p>
+          </div>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="card h-100 playful-card">
+              <div class="card-body p-4">
+                <span class="step">1</span>
+                <h5 class="card-title mt-2">Upload a form (PDF or photo)</h5>
+                <p class="card-text text-muted">We clean up the file and detect structure for easier reading and filling.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card h-100 playful-card">
+              <div class="card-body p-4">
+                <span class="step">2</span>
+                <h5 class="card-title mt-2">Translate and ask questions</h5>
+                <p class="card-text text-muted">Read the form in your language and chat with AI about any section.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card h-100 playful-card">
+              <div class="card-body p-4">
+                <span class="step">3</span>
+                <h5 class="card-title mt-2">Autofill and export</h5>
+                <p class="card-text text-muted">We map your answers to the English form and export a clean copy.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-            sortedCenters.forEach(center => {
-                const { name, address, hours, specializations, distance } = center;
-                const price = medicationFilter && inventoryData[name]?.[medicationFilter]?.price
-                    ? `$${inventoryData[name][medicationFilter].price}`
-                    : null;
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="py-6 bg-body-tertiary">
+      <div class="container">
+        <div class="row mb-4">
+          <div class="col-lg-8">
+            <h2 class="fw-bold mb-2">What our users say</h2>
+            <p class="text-muted">Care teams and patients love the clarity and speed.</p>
+          </div>
+        </div>
+        <div class="position-relative">
+          <div id="testimonialsTrack" class="testimonials-track"></div>
+          <div class="d-flex justify-content-center gap-3 mt-3">
+            <button class="btn btn-outline-secondary btn-sm" id="prevTestimonial" aria-label="Previous">‹</button>
+            <button class="btn btn-outline-secondary btn-sm" id="nextTestimonial" aria-label="Next">›</button>
+          </div>
+        </div>
+      </div>
+    </section>
 
-                const centerElement = document.createElement('div');
-                centerElement.classList.add('health-center');
-                centerElement.innerHTML = `
-                    <strong>${name}</strong> (<em>${distance} miles</em>)
-                    ${price ? `<div style="margin-top: 5px;"><strong>Price:</strong> ${price}</div>` : ""}
-                    <div class="details">
-                        <p><strong>Address:</strong> ${address}</p>
-                        <p><strong>Hours:</strong> ${hours}</p>
-                        <p><strong>Specializations:</strong> ${specializations}</p>
+    <!-- FAQ -->
+    <section id="faq" class="py-6">
+      <div class="container">
+        <div class="row mb-4">
+          <div class="col-lg-8">
+            <h2 class="fw-bold mb-2">Frequently asked questions</h2>
+            <p class="text-muted">Answers about translation, privacy, and form output.</p>
+          </div>
+        </div>
+        <div class="accordion" id="faqAccordion">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="q1"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a1" aria-expanded="true" aria-controls="a1">Which languages do you support?</button></h2>
+            <div id="a1" class="accordion-collapse collapse show" aria-labelledby="q1" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">We support Spanish, Chinese (Simplified), Vietnamese, Arabic, Hindi, and more. Tell us if you need another language.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="q2"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a2" aria-expanded="false" aria-controls="a2">Is my data private?</button></h2>
+            <div id="a2" class="accordion-collapse collapse" aria-labelledby="q2" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">No account is required to try the demo. Files are processed securely; enterprise plans offer HIPAA-aligned options and BAAs.</div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="q3"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a3" aria-expanded="false" aria-controls="a3">Can you fill the official English form?</button></h2>
+            <div id="a3" class="accordion-collapse collapse" aria-labelledby="q3" data-bs-parent="#faqAccordion">
+              <div class="accordion-body">Yes. After translating and answering your questions, we produce a completed English form (and an optional translated copy) ready to print or submit.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="py-6 bg-body-tertiary">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="card shadow-sm">
+              <div class="card-body p-4 p-lg-5">
+                <h2 class="fw-bold mb-3">Talk to us</h2>
+                <p class="text-muted mb-4">Have questions or want a demo? We’d love to hear from you.</p>
+                <form id="contactForm" novalidate>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label for="name" class="form-label">Name</label>
+                      <input id="name" name="name" type="text" class="form-control" required />
                     </div>
-                `;
+                    <div class="col-md-6">
+                      <label for="email" class="form-label">Email</label>
+                      <input id="email" name="email" type="email" class="form-control" required />
+                    </div>
+                    <div class="col-12">
+                      <label for="company" class="form-label">Organization</label>
+                      <input id="company" name="company" type="text" class="form-control" />
+                    </div>
+                    <div class="col-12">
+                      <label for="message" class="form-label">Message</label>
+                      <textarea id="message" name="message" class="form-control" rows="4" required></textarea>
+                    </div>
+                    <div class="col-12 d-flex align-items-center justify-content-between">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="consent" required />
+                        <label class="form-check-label" for="consent">I agree to the processing of my data.</label>
+                      </div>
+                      <button class="btn btn-gradient" type="submit">Send</button>
+                    </div>
+                  </div>
+                  <div id="contactFeedback" class="small mt-3"></div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-                const details = centerElement.querySelector('.details');
-                centerElement.addEventListener('click', () => {
-                    document.querySelectorAll('.details').forEach(el => el.classList.remove('expanded'));
-                    details.classList.add('expanded');
-                    map.setView([center.lat, center.lon], 15);
-                    markers[name].openPopup();
-                });
+    <!-- FOOTER -->
+    <footer class="py-5 border-top">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md-6">
+            <a class="navbar-brand fw-bold" href="#home">MedPull</a>
+            <p class="text-muted mt-2">Helping everyone understand and complete forms—translated, guided, and ready to submit.</p>
+          </div>
+          <div class="col-6 col-md-3">
+            <h6 class="fw-semibold">Product</h6>
+            <ul class="list-unstyled">
+              <li><a class="link-body-emphasis" href="#features">Features</a></li>
+              <li><a class="link-body-emphasis" href="#faq">FAQ</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md-3">
+            <h6 class="fw-semibold">Company</h6>
+            <ul class="list-unstyled">
+              <li><a class="link-body-emphasis" href="#contact">Contact</a></li>
+              <li><a class="link-body-emphasis" href="#">Privacy</a></li>
+              <li><a class="link-body-emphasis" href="#">Terms</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between align-items-center pt-4 mt-4 border-top">
+          <small class="text-muted">© <span id="year"></span> MedPull. All rights reserved.</small>
+          <div class="d-flex gap-3">
+            <a class="link-secondary" href="#" aria-label="Twitter">Twitter</a>
+            <a class="link-secondary" href="#" aria-label="LinkedIn">LinkedIn</a>
+            <a class="link-secondary" href="#" aria-label="GitHub">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </footer>
 
-                sidebarList.appendChild(centerElement);
-            });
-        }
-
-        function filterHealthCenters(medicationFilter) {
-            const filteredCenters = [];
-            Object.values(markers).forEach(marker => map.removeLayer(marker)); // Remove all markers
-
-            Object.values(healthCenters).forEach(center => {
-                if (!medicationFilter || (inventoryData[center.name]?.[medicationFilter])) {
-                    addMarker(center);
-                    filteredCenters.push(center); // Add to the list of filtered centers
-                }
-            });
-
-            updateSidebar(filteredCenters, medicationFilter);
-        }
-
-        function addMarker(center) {
-            const { lat, lon, name, address } = center;
-
-            if (!markers[name]) {
-                const marker = L.marker([lat, lon], { icon: redIcon })
-                    .bindPopup(`<strong>${name}</strong><br>${address}`);
-                markers[name] = marker;
-
-                marker.on('click', () => {
-                    const sidebarEntries = document.querySelectorAll('.health-center');
-                    sidebarEntries.forEach(entry => {
-                        const details = entry.querySelector('.details');
-                        const isCurrent = entry.querySelector('strong').textContent === name;
-                        details.classList.toggle('expanded', isCurrent);
-                        if (isCurrent) entry.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    });
-                });
-            }
-
-            map.addLayer(markers[name]);
-        }
-
-        function populateDropdown() {
-            const dropdown = document.getElementById('medication-dropdown');
-            const medications = new Set();
-            Object.values(inventoryData).forEach(centerData => {
-                Object.keys(centerData).forEach(medication => medications.add(medication));
-            });
-
-            medications.forEach(med => {
-                const option = document.createElement('option');
-                option.value = med;
-                option.textContent = med;
-                dropdown.appendChild(option);
-            });
-        }
-
-        function fetchInventoryData(csvUrl) {
-            return fetch(csvUrl)
-                .then(response => response.text())
-                .then(csvText => {
-                    Papa.parse(csvText, {
-                        header: true,
-                        skipEmptyLines: true,
-                        complete: function(results) {
-                            results.data.forEach(row => {
-                                const center = row["Health Center"];
-                                const medication = row["Medication"];
-                                const price = parseFloat(row["Price"].replace(/[^0-9.]/g, '')) || 0;
-
-                                if (!inventoryData[center]) inventoryData[center] = {};
-                                inventoryData[center][medication] = { price };
-                            });
-                            populateDropdown();
-                        }
-                    });
-                });
-        }
-
-        function fetchHealthCenters(csvUrl) {
-            fetch(csvUrl)
-                .then(response => response.text())
-                .then(csvText => {
-                    Papa.parse(csvText, {
-                        header: true,
-                        skipEmptyLines: true,
-                        complete: function(results) {
-                            const geocodePromises = results.data.map(center => {
-                                const name = center["Health Center"];
-                                const address = center["Address"];
-                                const hours = center["Hours of Operation"];
-                                const specializations = center["Specializations"];
-
-                                return fetch(`https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(address)}&key=${API_KEY}`)
-                                    .then(response => response.json())
-                                    .then(data => {
-                                        if (data.results.length > 0) {
-                                            const lat = data.results[0].geometry.lat;
-                                            const lon = data.results[0].geometry.lng;
-                                            const distance = calculateDistance(29.7604, -95.3698, lat, lon);
-
-                                            healthCenters[name] = {
-                                                lat, lon, name, address, hours, specializations, distance
-                                            };
-
-                                            addMarker(healthCenters[name]); // Add marker on the map
-                                        }
-                                    });
-                            });
-
-                            Promise.all(geocodePromises).then(() => {
-                                updateSidebar(Object.values(healthCenters), ""); // Initialize sidebar with all centers
-                            });
-                        }
-                    });
-                });
-        }
-
-        document.getElementById('medication-dropdown').addEventListener('change', (e) => {
-            const medicationFilter = e.target.value;
-            filterHealthCenters(medicationFilter);
-        });
-
-        document.getElementById('sort-dropdown').addEventListener('change', () => {
-            filterHealthCenters(document.getElementById('medication-dropdown').value);
-        });
-
-        const healthCentersUrl = "https://raw.githubusercontent.com/kanthipm/medpull/main/hc_data.csv";
-        const inventoryUrl = "https://raw.githubusercontent.com/kanthipm/medpull/main/inventory.csv";
-
-        fetchInventoryData(inventoryUrl).then(() => fetchHealthCenters(healthCentersUrl));
-    </script>
-</body>
+    <script src="assets/js/cluely.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
-
