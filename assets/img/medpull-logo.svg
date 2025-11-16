@@ -1,0 +1,10 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <!-- Purple figure (left) -->
+  <circle cx="10" cy="8" r="4" fill="#9B7EDE"/>
+  <path d="M 8 12 L 6 24 L 14 24 Z" fill="#9B7EDE"/>
+  
+  <!-- Teal figure (right, overlapping) -->
+  <circle cx="22" cy="8" r="4" fill="#20B2AA" opacity="0.8"/>
+  <path d="M 20 12 L 18 24 L 26 24 Z" fill="#20B2AA" opacity="0.8"/>
+</svg>
+

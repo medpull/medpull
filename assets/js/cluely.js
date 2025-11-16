@@ -34,7 +34,7 @@
     { t: 'Autofill answers', d: 'Your responses are mapped to the official English form.' },
     { t: 'Export clean copies', d: 'Download a crisp, ready-to-submit PDF or print.' },
     { t: 'Works on any device', d: 'iOS, Android, and the web—no special setup required.' },
-    { t: 'Privacy options', d: 'Enterprise plans with HIPAA-aligned options and BAAs.' },
+    { t: 'Privacy guaranteed', d: 'Enterprise plans with HIPAA-aligned options and BAAs.' },
   ];
   const grid = $('#featuresGrid');
   if (grid) {
@@ -57,10 +57,10 @@
   const track = $('#testimonialsTrack');
   if (track) {
     const items = [
-      { q: 'We finished a clinic intake form in minutes.', a: 'Care coordinator' },
-      { q: 'The translation quality surprised us.', a: 'Community partner' },
-      { q: 'Autofill saved our team tons of time.', a: 'Program manager' },
-      { q: 'Patients loved being able to ask in their own language.', a: 'Nurse lead' },
+      { q: 'It\'s hard to explain what\'s wrong when you don\'t have records. I\'d use anything that helps me keep them.', a: 'Patient' },
+      { q: 'I have to fill out the same forms every visit and sometimes forget documents.', a: 'Patient' },
+      { q: 'Patients get overwhelmed by the forms and long lines.', a: 'Staff' },
+      { q: 'We rely heavily on Google Translate since our translators only speak English and Spanish.', a: 'Staff' },
     ];
     track.innerHTML = items
       .map(

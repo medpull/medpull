@@ -21,21 +21,23 @@
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg site-nav fixed-top">
       <div class="container">
-        <a class="navbar-brand fw-bold" href="#home">MedPull</a>
+        <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="#home" style="letter-spacing: -0.02em;">
+          <img src="assets/img/medpull-logo.svg" alt="MedPull" style="height: 32px; display: block;" onerror="this.style.display='none';">
+          <span>MedPull</span>
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="mainNav">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item"><a class="nav-link" href="demo.html">Demo</a></li>
             <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
             <li class="nav-item"><a class="nav-link" href="#how">How it works</a></li>
             <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
             <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact">Contact Us</a></li>
           </ul>
           <div class="d-flex gap-2 align-items-center">
-            <a class="btn btn-gradient btn-sm" href="https://app.medpull.com" target="_blank" rel="noopener">Open Web App</a>
-            <a class="btn btn-outline-primary btn-sm rounded-pill" href="demo.html">Try demo</a>
+            <a class="btn btn-gradient btn-sm" href="join-waitlist.html">Join Waitlist</a>
           </div>
         </div>
       </div>
@@ -46,11 +48,11 @@
       <div class="container position-relative">
         <div class="row align-items-center g-5">
           <div class="col-lg-6 order-2 order-lg-1">
-            <h1 class="hero-title mb-3">Your AI assistant for forms</h1>
-            <p class="hero-subtitle">Translates instantly, answers questions in real time, and exports clean English forms ready to submit.</p>
+            <h1 class="hero-title mb-3">Smarter intake for Community Health Centers</h1>
+            <p class="hero-subtitle">Supports five languages, guides patients through forms in real time, and generates clean, ready-to-submit English summaries for your clinic.</p>
             <div class="d-flex flex-column flex-sm-row gap-3 mt-4">
-              <a href="https://app.medpull.com" class="btn btn-gradient btn-lg px-4" target="_blank" rel="noopener">Open Web App</a>
-              <a href="#how" class="btn btn-outline-light btn-lg px-4 rounded-pill">See how it works</a>
+              <a href="demo.html" class="btn btn-gradient btn-lg px-4">Try Demo</a>
+              <a href="join-waitlist.html" class="btn btn-gradient btn-lg px-4">Join Waitlist</a>
             </div>
 
             <div class="ask-bar mt-4">
@@ -58,26 +60,23 @@
               <span class="prompt" id="askPrompt">How do I fill Section 3?</span>
               <span class="kbd">⌘⏎</span>
             </div>
-            <div class="text-muted small mt-2">No account required to try.</div>
           </div>
 
           <div class="col-lg-6 order-1 order-lg-2">
             <div class="hero-preview">
               <div class="preview-top d-flex justify-content-between align-items-center">
-                <span class="badge bg-success-subtle text-success-emphasis">Live</span>
-                <span class="small text-muted">Updated just now</span>
               </div>
               <div class="row g-3 mt-2">
                 <div class="col-6">
                   <div class="stat">
                     <div class="stat-label">Languages</div>
-                    <div class="stat-value">20+</div>
+                    <div class="stat-value">5+</div>
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="stat">
-                    <div class="stat-label">Forms completed</div>
-                    <div class="stat-value">12k+</div>
+                    <div class="stat-label">Patients served</div>
+                    <div class="stat-value">500+</div>
                   </div>
                 </div>
                 <div class="col-12">
@@ -99,11 +98,34 @@
       <div class="container text-center">
         <p class="text-muted mb-4">Trusted by care teams and community partners</p>
         <div class="row g-4 align-items-center justify-content-center logo-row">
-          <div class="col-6 col-md-2"><div class="logo placeholder-logo">CARE+</div></div>
-          <div class="col-6 col-md-2"><div class="logo placeholder-logo">HealthyCo</div></div>
-          <div class="col-6 col-md-2"><div class="logo placeholder-logo">RxTrust</div></div>
-          <div class="col-6 col-md-2"><div class="logo placeholder-logo">CHC Net</div></div>
-          <div class="col-6 col-md-2"><div class="logo placeholder-logo">OpenHealth</div></div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <img src="assets/img/legacy-community-health-logo.png" alt="Legacy Community Health" class="img-fluid" style="max-height: 60px; object-fit: contain;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="logo placeholder-logo" style="display: none;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <div style="width: 40px; height: 40px; display: flex; flex-direction: column;">
+                  <div style="width: 12px; height: 40px; background: #20B2AA;"></div>
+                  <div style="width: 12px; height: 40px; background: #FF6B35; margin-left: 12px; margin-top: -40px;"></div>
+                  <div style="width: 24px; height: 12px; background: #FFD23F; margin-top: -12px; margin-left: 12px;"></div>
+                </div>
+                <div>
+                  <div style="color: #FF6B35; font-weight: bold; font-size: 18px;">LEGACY</div>
+                  <div style="color: #20B2AA; font-size: 12px;">COMMUNITY HEALTH</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-4 col-lg-3">
+            <img src="assets/img/hope-clinic-logo.png" alt="Hope Clinic a community health center" class="img-fluid" style="max-height: 60px; object-fit: contain;" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="logo placeholder-logo" style="display: none;">
+              <div style="text-align: left;">
+                <div style="font-weight: bold; font-size: 24px; font-family: serif;">
+                  H<span style="color: #DC143C;">O</span>PE
+                </div>
+                <div style="font-weight: bold; font-size: 16px; letter-spacing: 2px;">CLINIC</div>
+                <div style="font-size: 11px; text-transform: lowercase;">a community health center</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -153,8 +175,8 @@
             <div class="card h-100 playful-card">
               <div class="card-body p-4">
                 <span class="step">3</span>
-                <h5 class="card-title mt-2">Autofill and export</h5>
-                <p class="card-text text-muted">We map your answers to the English form and export a clean copy.</p>
+                <h5 class="card-title mt-2">Autofill and create digital record</h5>
+                <p class="card-text text-muted">We map your answers to the English form, store patient data securely, and create a digital record sent to your CHC.</p>
               </div>
             </div>
           </div>
@@ -167,8 +189,8 @@
       <div class="container">
         <div class="row mb-4">
           <div class="col-lg-8">
-            <h2 class="fw-bold mb-2">What our users say</h2>
-            <p class="text-muted">Care teams and patients love the clarity and speed.</p>
+            <h2 class="fw-bold mb-2">Community voices</h2>
+            <p class="text-muted">Real feedback from patients and staff at Community Health Centers.</p>
           </div>
         </div>
         <div class="position-relative">
@@ -194,13 +216,13 @@
           <div class="accordion-item">
             <h2 class="accordion-header" id="q1"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#a1" aria-expanded="true" aria-controls="a1">Which languages do you support?</button></h2>
             <div id="a1" class="accordion-collapse collapse show" aria-labelledby="q1" data-bs-parent="#faqAccordion">
-              <div class="accordion-body">We support Spanish, Chinese (Simplified), Vietnamese, Arabic, Hindi, and more. Tell us if you need another language.</div>
+              <div class="accordion-body">We support Spanish, English, Hindi, Chinese (Simplified), French, and Arabic. Tell us if you need another language.</div>
             </div>
           </div>
           <div class="accordion-item">
             <h2 class="accordion-header" id="q2"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a2" aria-expanded="false" aria-controls="a2">Is my data private?</button></h2>
             <div id="a2" class="accordion-collapse collapse" aria-labelledby="q2" data-bs-parent="#faqAccordion">
-              <div class="accordion-body">No account is required to try the demo. Files are processed securely; enterprise plans offer HIPAA-aligned options and BAAs.</div>
+              <div class="accordion-body">Files are processed securely; enterprise plans offer HIPAA-aligned options and BAAs.</div>
             </div>
           </div>
           <div class="accordion-item">
@@ -262,7 +284,10 @@
       <div class="container">
         <div class="row g-4">
           <div class="col-md-6">
-            <a class="navbar-brand fw-bold" href="#home">MedPull</a>
+            <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="#home" style="letter-spacing: -0.02em;">
+              <img src="assets/img/medpull-logo.svg" alt="MedPull" style="height: 32px; display: block;" onerror="this.style.display='none';">
+              <span>MedPull</span>
+            </a>
             <p class="text-muted mt-2">Helping everyone understand and complete forms—translated, guided, and ready to submit.</p>
           </div>
           <div class="col-6 col-md-3">
@@ -276,18 +301,11 @@
             <h6 class="fw-semibold">Company</h6>
             <ul class="list-unstyled">
               <li><a class="link-body-emphasis" href="#contact">Contact</a></li>
-              <li><a class="link-body-emphasis" href="#">Privacy</a></li>
-              <li><a class="link-body-emphasis" href="#">Terms</a></li>
             </ul>
           </div>
         </div>
         <div class="d-flex justify-content-between align-items-center pt-4 mt-4 border-top">
           <small class="text-muted">© <span id="year"></span> MedPull. All rights reserved.</small>
-          <div class="d-flex gap-3">
-            <a class="link-secondary" href="#" aria-label="Twitter">Twitter</a>
-            <a class="link-secondary" href="#" aria-label="LinkedIn">LinkedIn</a>
-            <a class="link-secondary" href="#" aria-label="GitHub">GitHub</a>
-          </div>
         </div>
       </div>
     </footer>
