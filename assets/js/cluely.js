@@ -34,7 +34,7 @@
     { t: 'Ranked provider worklist', d: 'Patients sorted by who needs attention, each with the clinical reason written out.' },
     { t: 'AI recovery summaries', d: 'Two weeks of check-ins in a paragraph a surgeon reads in fifteen seconds, ready for the chart.' },
     { t: 'RTM made simple', d: 'Data days and interactive minutes tracked automatically, so codes surface the moment thresholds are met.' },
-    { t: 'Wearables and clinical data', d: 'Activity, sleep, and chart data joining the same recovery timeline. On the roadmap.' },
+    { t: 'Multilingual by default', d: 'Check-ins run in the patient\'s language, so response rates hold up across your whole panel.' },
   ];
   const grid = $('#featuresGrid');
   if (grid) {
