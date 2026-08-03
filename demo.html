@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>MedPull Demo — Translate, chat, and fill forms</title>
-    <meta name="description" content="Try MedPull: upload a form, translate it, chat with AI, and export a completed English form (demo)." />
-    
+    <title>MedPull Demo — See the Recovery Copilot work</title>
+    <meta name="description" content="Walk through an adaptive post-operative check-in and watch it turn into a provider worklist entry, an AI recovery summary, and RTM billing status." />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=EB+Garamond:wght@500;600&display=swap" rel="stylesheet" />
-    
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/cluely.css" />
   </head>
@@ -27,8 +27,8 @@
         <div class="collapse navbar-collapse" id="mainNav">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item"><a class="nav-link" href="index.html#features">Features</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html#product">Product</a></li>
             <li class="nav-item"><a class="nav-link" href="index.html#how">How it works</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.html#testimonials">Testimonials</a></li>
             <li class="nav-item"><a class="nav-link" href="index.html#faq">FAQ</a></li>
             <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact Us</a></li>
           </ul>
@@ -43,218 +43,183 @@
     <main class="py-6">
       <div class="container">
         <div class="mb-5 text-center">
-          <h1 class="hero-title mb-3" style="font-size: clamp(36px,5vw,52px);">Try the MedPull demo</h1>
-          <p class="text-muted mb-4" style="max-width: 600px; margin: 0 auto;">Experience how MedPull translates forms, answers questions, and helps you complete paperwork—all in your browser.</p>
+          <span class="eyebrow">Interactive demo</span>
+          <h1 class="hero-title mb-3" style="font-size: clamp(36px,5vw,52px);">See the Recovery Copilot work</h1>
+          <p class="text-muted mb-4" style="max-width: 640px; margin: 0 auto;">Answer a post-op check-in the way one of your patients would, and watch it become a provider worklist entry, an AI recovery summary, and RTM billing progress — live, on the right.</p>
           <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
-            <a href="https://calendar.app.google/yKobafmhJYFhTbVz8" target="_blank" class="btn btn-gradient btn-lg px-4" style="display: inline-flex; align-items-center; gap: 8px;">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                <line x1="16" y1="2" x2="16" y2="6"></line>
-                <line x1="8" y1="2" x2="8" y2="6"></line>
-                <line x1="3" y1="10" x2="21" y2="10"></line>
-              </svg>
-              <span>Book a Demo</span>
-            </a>
+            <a href="#booking" class="btn btn-gradient btn-lg px-4">Book a Demo</a>
             <a href="join-waitlist.html" class="btn btn-outline-primary btn-lg px-4">Join Waitlist</a>
           </div>
         </div>
 
-        <div class="row g-4 mb-4">
-          <!-- Upload -->
-          <div class="col-12 col-lg-4">
-            <div class="card h-100 playful-card demo-card">
-              <div class="card-body p-4">
-                <div class="d-flex align-items-center gap-2 mb-3">
-                <span class="step">1</span>
-                  <h5 class="mb-0">Upload a form</h5>
-                </div>
-                <p class="text-muted small mb-3">PDF or image files accepted</p>
-                
-                <div class="file-upload-area mb-3" id="fileUploadArea">
-                  <input id="fileInput" type="file" class="d-none" accept=".pdf,image/*" />
-                  <label for="fileInput" class="file-upload-label">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mb-2">
-                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                      <polyline points="17 8 12 3 7 8"></polyline>
-                      <line x1="12" y1="3" x2="12" y2="15"></line>
-                    </svg>
-                    <span class="file-upload-text">Click to upload</span>
-                    <span class="file-upload-hint">or drag and drop</span>
-                  </label>
-                </div>
-                
-                <div id="fileInfo" class="file-info">
-                  <div class="d-flex align-items-center gap-2">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                      <polyline points="14 2 14 8 20 8"></polyline>
-                      <line x1="16" y1="13" x2="8" y2="13"></line>
-                      <line x1="16" y1="17" x2="8" y2="17"></line>
-                      <polyline points="10 9 9 9 8 9"></polyline>
-                    </svg>
-                    <span class="small text-muted">No file selected</span>
-                  </div>
-                </div>
-                
-                <button id="resetFile" class="btn btn-outline-secondary btn-sm w-100 mt-3" type="button" style="display: none;">Reset</button>
-              </div>
-            </div>
+        <!-- STEP 1: pick a patient -->
+        <div class="mb-4">
+          <div class="d-flex align-items-center gap-2 mb-3">
+            <span class="step">1</span>
+            <h5 class="mb-0 fw-semibold">Pick a patient</h5>
           </div>
-
-          <!-- Translate & Chat -->
-          <div class="col-12 col-lg-4">
-            <div class="card h-100 playful-card demo-card">
-              <div class="card-body p-4">
-                <div class="d-flex align-items-center gap-2 mb-3">
-                <span class="step">2</span>
-                  <h5 class="mb-0">Translate & Chat</h5>
-                </div>
-                
-                <div class="mb-3">
-                  <label for="langSelect" class="form-label small fw-semibold">Target Language</label>
-                  <div class="input-group">
-                    <select id="langSelect" class="form-select form-select-sm">
-                      <option value="es" selected>🇪🇸 Spanish (Español)</option>
-                      <option value="en">🇺🇸 English (Default)</option>
-                      <option value="hi">🇮🇳 Hindi (हिन्दी)</option>
-                      <option value="zh">🇨🇳 Chinese (中文 Simplified)</option>
-                      <option value="fr">🇫🇷 French (Français)</option>
-                      <option value="ar">🇸🇦 Arabic (العربية)</option>
-                    </select>
-                    <button id="translateBtn" class="btn btn-primary btn-sm" type="button">
-                      <span class="translate-btn-text">Translate</span>
-                      <span class="translate-btn-loading d-none">
-                        <span class="spinner-border spinner-border-sm me-1" role="status"></span>
-                        Translating...
-                      </span>
-                    </button>
+          <div class="row g-3" id="scenarioPicker">
+            <div class="col-md-4">
+              <button class="card playful-card demo-card w-100 h-100 text-start border-0 p-0" data-scenario="tka" type="button" aria-pressed="true">
+                <div class="card-body p-4">
+                  <div class="d-flex justify-content-between align-items-start mb-1">
+                    <span class="wl-name">Maria Alvarez</span>
+                    <span class="pill pill-neutral">POD 14</span>
                   </div>
+                  <div class="wl-sub">Total knee arthroplasty</div>
+                  <p class="card-text text-muted small mb-0 mt-2">Two weeks out. Range of motion improving, but something changed this week.</p>
                 </div>
-                
-                <div id="translateOut" class="translation-output">
-                  <div class="translation-placeholder">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mb-2 opacity-50">
-                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                      <polyline points="17 8 12 3 7 8"></polyline>
-                      <line x1="12" y1="3" x2="12" y2="15"></line>
-                    </svg>
-                    <span class="small text-muted">Translation will appear here</span>
-                  </div>
-                </div>
-
-                <div class="mt-4">
-                  <div class="d-flex justify-content-between align-items-center mb-2">
-                    <h6 class="mb-0 small fw-semibold">AI Assistant</h6>
-                    <div class="d-flex align-items-center gap-2">
-                      <button id="apiKeyBtn" class="btn btn-sm btn-outline-secondary" type="button" title="Configure API Key">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                        </svg>
-                      </button>
-                      <span class="badge bg-success-subtle text-success-emphasis" id="aiStatus">Live</span>
-                    </div>
-                  </div>
-                  <div id="chatLog" class="chat-log"></div>
-                  <form id="chatForm" class="chat-input-group mt-2">
-                    <input id="chatInput" type="text" class="form-control form-control-sm" placeholder="Ask about any section…" autocomplete="off" />
-                    <button class="btn btn-primary btn-sm" type="submit">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="22" y1="2" x2="11" y2="13"></line>
-                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                      </svg>
-                    </button>
-                  </form>
-                </div>
-              </div>
+              </button>
             </div>
-          </div>
-
-          <!-- Fill & Export -->
-          <div class="col-12 col-lg-4">
-            <div class="card h-100 playful-card demo-card">
-              <div class="card-body p-4">
-                <div class="d-flex align-items-center gap-2 mb-3">
-                <span class="step">3</span>
-                  <h5 class="mb-0">Fill & Export</h5>
-                </div>
-                
-                <form id="fieldsForm" class="demo-form">
-                  <div id="dynamicFields">
-                    <div class="text-center text-muted small py-4">
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mb-2 opacity-50">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                        <polyline points="14 2 14 8 20 8"></polyline>
-                        <line x1="16" y1="13" x2="8" y2="13"></line>
-                        <line x1="16" y1="17" x2="8" y2="17"></line>
-                      </svg>
-                      <div>Upload a form to see detected fields</div>
-                    </div>
+            <div class="col-md-4">
+              <button class="card playful-card demo-card w-100 h-100 text-start border-0 p-0" data-scenario="acl" type="button" aria-pressed="false">
+                <div class="card-body p-4">
+                  <div class="d-flex justify-content-between align-items-start mb-1">
+                    <span class="wl-name">James Whitfield</span>
+                    <span class="pill pill-neutral">POD 21</span>
                   </div>
-                </form>
-                
-                <div class="d-grid gap-2">
-                  <button id="autofillBtn" class="btn btn-outline-primary btn-sm" type="button">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-1">
-                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                      <polyline points="17 8 12 3 7 8"></polyline>
-                      <line x1="12" y1="3" x2="12" y2="15"></line>
-                    </svg>
-                    Autofill from chat
-                  </button>
-                  <div class="btn-group btn-group-sm">
-                    <button id="clearBtn" class="btn btn-outline-secondary" type="button">Clear</button>
-                    <button id="downloadPdfBtn" class="btn btn-primary" type="button">
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-1">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                        <polyline points="7 10 12 15 17 10"></polyline>
-                        <line x1="12" y1="15" x2="12" y2="3"></line>
-                      </svg>
-                      PDF
-                    </button>
-                    <button id="downloadJsonBtn" class="btn btn-outline-success" type="button">JSON</button>
-                  </div>
-                  <button id="sendToClinicBtn" class="btn btn-gradient btn-sm mt-2" type="button">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-1">
-                      <line x1="22" y1="2" x2="11" y2="13"></line>
-                      <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                    </svg>
-                    Send to Clinic
-                  </button>
+                  <div class="wl-sub">ACL reconstruction</div>
+                  <p class="card-text text-muted small mb-0 mt-2">Young, active, and quietly skipping physical therapy sessions.</p>
                 </div>
-              </div>
+              </button>
+            </div>
+            <div class="col-md-4">
+              <button class="card playful-card demo-card w-100 h-100 text-start border-0 p-0" data-scenario="rcr" type="button" aria-pressed="false">
+                <div class="card-body p-4">
+                  <div class="d-flex justify-content-between align-items-start mb-1">
+                    <span class="wl-name">Rachel Okafor</span>
+                    <span class="pill pill-neutral">POD 9</span>
+                  </div>
+                  <div class="wl-sub">Rotator cuff repair</div>
+                  <p class="card-text text-muted small mb-0 mt-2">Early days. Sleep is the thing that usually goes wrong first.</p>
+                </div>
+              </button>
             </div>
           </div>
         </div>
 
-        <div class="alert alert-info border-0 shadow-sm mt-4" role="alert" style="background: linear-gradient(135deg, rgba(125,191,255,.1), rgba(134,204,255,.08));">
-          <div class="d-flex align-items-start gap-2">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="mt-1 flex-shrink-0">
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="12" y1="16" x2="12" y2="12"></line>
-              <line x1="12" y1="8" x2="12.01" y2="8"></line>
-            </svg>
-            <div>
-              <strong>Browser demo</strong> — This simulation runs entirely in your browser. Real MedPull uses OCR and secure translation services for production use.
+        <!-- STEP 2 + 3 -->
+        <div class="row g-4">
+          <!-- Patient side -->
+          <div class="col-lg-6">
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <span class="step">2</span>
+              <h5 class="mb-0 fw-semibold">Answer as the patient</h5>
+            </div>
+            <div class="mock-window">
+              <div class="mock-bar">
+                <div class="mock-dots"><i></i><i></i><i></i></div>
+                <span class="mock-title" id="chatTitle">Recovery check-in</span>
+                <span class="mock-chip">Adaptive</span>
+              </div>
+              <div class="mock-body">
+                <div class="chat-meta" id="chatMeta">Day 14 · Total knee arthroplasty</div>
+                <div id="demoChatLog" class="chat-log" style="height: 300px; max-height: 300px;"></div>
+                <div class="quick-replies mt-3" id="demoReplies"></div>
+                <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top">
+                  <span class="wl-sub" id="chatProgress">Question 1 of 4</span>
+                  <button class="btn btn-outline-secondary btn-sm" id="demoReset" type="button">Start over</button>
+                </div>
+              </div>
+            </div>
+            <p class="small text-muted mt-3 mb-0">In production this arrives as a plain text message — no app, no portal login, in the patient's language.</p>
+          </div>
+
+          <!-- Provider side -->
+          <div class="col-lg-6">
+            <div class="d-flex align-items-center gap-2 mb-3">
+              <span class="step">3</span>
+              <h5 class="mb-0 fw-semibold">Watch what your team sees</h5>
+            </div>
+
+            <div class="mock-window mb-3">
+              <div class="mock-bar">
+                <div class="mock-dots"><i></i><i></i><i></i></div>
+                <span class="mock-title">Provider worklist</span>
+                <span class="mock-chip" id="worklistChip">Awaiting check-in</span>
+              </div>
+              <div class="mock-body mock-scroll">
+                <div>
+                  <div class="wl-head">
+                    <div>Patient</div><div>Why it surfaced</div><div>POD</div><div>Status</div><div>Last</div>
+                  </div>
+                  <div class="wl-row" id="worklistRow">
+                    <div><div class="wl-name" id="wlName">Maria Alvarez</div><div class="wl-sub" id="wlProc">Total knee arthroplasty</div></div>
+                    <div class="wl-cell" id="wlReason">No check-in yet today</div>
+                    <div class="wl-pod" id="wlPod">14</div>
+                    <div><span class="pill pill-neutral" id="wlStatus">Pending</span></div>
+                    <div class="wl-cell" id="wlLast">—</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mock-window mb-3">
+              <div class="mock-bar">
+                <div class="mock-dots"><i></i><i></i><i></i></div>
+                <span class="mock-title">AI recovery summary</span>
+                <span class="mock-chip" id="summaryChip">Generating…</span>
+              </div>
+              <div class="mock-body">
+                <div class="rs-summary">
+                  <p id="summaryText" class="text-muted">The summary writes itself once the check-in is complete. Answer the questions on the left to see it build.</p>
+                </div>
+                <div id="summaryFlags" class="mt-2"></div>
+              </div>
+            </div>
+
+            <div class="mock-window">
+              <div class="mock-bar">
+                <div class="mock-dots"><i></i><i></i><i></i></div>
+                <span class="mock-title">RTM readiness</span>
+                <span class="mock-chip" id="rtmChip">In progress</span>
+              </div>
+              <div class="mock-body">
+                <div class="row g-3">
+                  <div class="col-6">
+                    <div class="rtm-code">
+                      <div class="d-flex justify-content-between align-items-start mb-1">
+                        <span class="rtm-code-id">98977</span>
+                        <span class="pill pill-watch" id="rtmDaysPill">In progress</span>
+                      </div>
+                      <div class="rtm-code-name">Device supply, 16 days of data</div>
+                      <div class="rtm-meter is-short"><span id="rtmDaysBar" style="width:56%"></span></div>
+                      <div class="rtm-foot"><span id="rtmDaysText">9 / 16 days</span><span>Auto-tracked</span></div>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="rtm-code">
+                      <div class="d-flex justify-content-between align-items-start mb-1">
+                        <span class="rtm-code-id">98980</span>
+                        <span class="pill pill-watch" id="rtmMinsPill">In progress</span>
+                      </div>
+                      <div class="rtm-code-name">First 20 min treatment management</div>
+                      <div class="rtm-meter is-short"><span id="rtmMinsBar" style="width:60%"></span></div>
+                      <div class="rtm-foot"><span id="rtmMinsText">12 / 20 min</span><span>Auto-tracked</span></div>
+                    </div>
+                  </div>
+                </div>
+                <p class="small text-muted mt-3 mb-0">Illustrative only. RTM code availability and reimbursement vary by payer and setting.</p>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- Book a Demo Section -->
-        <div class="row justify-content-center mt-5">
+        <div class="row justify-content-center mt-5" id="booking">
           <div class="col-lg-8">
             <div class="card shadow-sm border-0">
               <div class="card-body p-4 p-lg-5">
                 <div class="text-center mb-4">
-                  <h3 class="fw-bold mb-2">Ready to see MedPull in action?</h3>
-                  <p class="text-muted">Schedule a personalized demo to see how MedPull can help your Community Health Center serve patients better.</p>
+                  <h3 class="fw-bold mb-2">Ready to see this on your own patients?</h3>
+                  <p class="text-muted">Schedule a personalized walkthrough to see how the Recovery Copilot fits your procedure mix and post-op follow-up workflow.</p>
                 </div>
-                
+
                 <!-- Google Calendar Appointment Scheduling -->
                 <div class="calendar-embed-container mb-4" style="border-radius: 12px; overflow: hidden; border: 1px solid var(--bs-border-color); background: var(--bs-body-bg); max-width: 700px; margin: 0 auto;">
                   <div style="transform: scale(0.9); transform-origin: top center; width: 111.11%; margin-left: -5.56%;">
-                    <iframe 
-                      src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0hlwi0d3-kQiDVDw-j8PEkXoX_q5sN3CF5C9dOphTBJY66m5puOAVyOD8nXVPsgtyIZWFJsUi6?gv=true" 
+                    <iframe
+                      src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0hlwi0d3-kQiDVDw-j8PEkXoX_q5sN3CF5C9dOphTBJY66m5puOAVyOD8nXVPsgtyIZWFJsUi6?gv=true"
                       style="border: 0; width: 100%; height: 600px; display: block;"
                       frameborder="0"
                       title="Book a Demo - Google Calendar">
@@ -287,7 +252,7 @@
                         </svg>
                       </div>
                       <h6 class="fw-semibold mb-1">Custom Discussion</h6>
-                      <p class="text-muted small mb-0">Tailored to your needs</p>
+                      <p class="text-muted small mb-0">Tailored to your procedure mix</p>
                     </div>
                   </div>
                   <div class="col-md-4">
@@ -299,7 +264,7 @@
                         </svg>
                       </div>
                       <h6 class="fw-semibold mb-1">Q&A Session</h6>
-                      <p class="text-muted small mb-0">Get all your questions answered</p>
+                      <p class="text-muted small mb-0">Integration, RTM, and pricing</p>
                     </div>
                   </div>
                 </div>
@@ -320,93 +285,8 @@
       </div>
     </footer>
 
-    <!-- Send to Clinic Confirmation Modal -->
-    <div class="modal fade" id="sendToClinicModal" tabindex="-1" aria-labelledby="sendToClinicModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header border-0 pb-0">
-            <h5 class="modal-title" id="sendToClinicModalLabel">Send Form to Clinic</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <p>Are you sure you want to send this completed form to the clinic?</p>
-            <div class="alert alert-info small mb-0">
-              <strong>Note:</strong> This is a demo. In production, the form would be securely transmitted to your healthcare provider.
-            </div>
-          </div>
-          <div class="modal-footer border-0">
-            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-gradient" id="confirmSendBtn">Send to Clinic</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Success Confirmation Modal -->
-    <div class="modal fade" id="sendSuccessModal" tabindex="-1" aria-labelledby="sendSuccessModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header border-0 pb-0">
-            <h5 class="modal-title" id="sendSuccessModalLabel">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-success me-2">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                <polyline points="22 4 12 14.01 9 11.01"></polyline>
-              </svg>
-              Form Sent Successfully!
-            </h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body text-center">
-            <div class="mb-3">
-              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-success">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                <polyline points="22 4 12 14.01 9 11.01"></polyline>
-              </svg>
-            </div>
-            <p class="mb-0">Your form has been successfully sent to the clinic. You should receive a confirmation email shortly.</p>
-          </div>
-          <div class="modal-footer border-0 justify-content-center">
-            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Done</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- API Key Modal -->
-    <div class="modal fade" id="apiKeyModal" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Configure OpenAI API Key</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <p class="small text-muted mb-3">Enter your OpenAI API key to enable real AI responses. Your key is stored locally in your browser and never sent to our servers.</p>
-            <div class="mb-3">
-              <label for="apiKeyInput" class="form-label small fw-semibold">OpenAI API Key</label>
-              <input type="password" class="form-control form-control-sm" id="apiKeyInput" placeholder="sk-..." />
-              <div class="form-text small">Get your API key from <a href="https://platform.openai.com/api-keys" target="_blank">OpenAI Platform</a></div>
-            </div>
-            <div class="alert alert-info small mb-0">
-              <strong>Note:</strong> Without an API key, the chat will use fallback responses. The key is stored in your browser's local storage.
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-primary btn-sm" id="saveApiKeyBtn">Save</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- PDF.js for PDF parsing -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-    <!-- Tesseract.js for OCR -->
-    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
-    <!-- jsPDF for PDF generation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-8qJV5nD9yS/Aa4Jx0q6o0D4+6xTSqQHn0fQb9p8mG5C6kzqvF0F9vPFU5mQq3zK8MrmbwOS5w5zU5JXwU1nG6w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="assets/js/cluely.js"></script>
-    <script src="assets/js/demo.js"></script>
+    <script src="assets/js/recovery-demo.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/interest-popup.js"></script>
   </body>

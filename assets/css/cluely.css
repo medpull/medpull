@@ -275,3 +275,110 @@ html, body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Hel
 
 /* Smooth transitions */
 * { transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform; }
+
+/* =========================================================================
+   RECOVERY COPILOT — product mockups & supporting sections
+   Built from the existing tokens above (brand gradient, #e6ecff borders,
+   rgba(31,65,114,*) shadows) so the visual language is unchanged.
+   ========================================================================= */
+
+/* Eyebrow label */
+.eyebrow { display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #4a6da8; background: linear-gradient(135deg, #f2f6ff, #e9fbff); border: 1px solid #e6ecff; padding: 4px 11px; border-radius: 999px; margin-bottom: 12px; }
+
+/* Mockup window chrome — same card physics as .hero-preview */
+.mock-window { position: relative; border-radius: 13px; overflow: hidden; background: #fff; border: 1px solid #e6ecff; box-shadow: 0 24px 60px rgba(31,65,114,.08); }
+.mock-bar { display: flex; align-items: center; gap: .5rem; padding: 10px 14px; background: #f7f9ff; border-bottom: 1px solid #eef2ff; }
+.mock-dots { display: flex; gap: 5px; }
+.mock-dots i { width: 9px; height: 9px; border-radius: 50%; background: #dde5fb; display: block; }
+.mock-title { font-size: 12px; font-weight: 600; color: #61708a; letter-spacing: -0.01em; }
+.mock-chip { margin-left: auto; font-size: 11px; font-weight: 600; color: #385073; background: #fff; border: 1px solid #e6ecff; border-radius: 999px; padding: 3px 10px; }
+.mock-body { padding: 16px; }
+
+/* Tabs that switch between the four product views */
+.mock-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+.mock-tab { font-size: 13px; font-weight: 600; color: #61708a; background: #fff; border: 1px solid #e6ecff; border-radius: 10px; padding: 8px 14px; cursor: pointer; transition: transform .15s ease, box-shadow .15s ease, color .15s ease; }
+.mock-tab:hover { color: #1f2a44; transform: translateY(-1px); box-shadow: 0 6px 18px rgba(31,65,114,.07); }
+.mock-tab[aria-selected="true"] { color: #0b1220; background-image: linear-gradient(135deg, var(--brand-grad-1), var(--brand-grad-2) 50%, var(--brand-grad-3)); border-color: #d9e2ff; box-shadow: 0 10px 28px rgba(125,191,255,.28); }
+.mock-panel[hidden] { display: none; }
+.mock-panel { animation: mockFade .32s ease; }
+@keyframes mockFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Status pills — shared across worklist, summary, and RTM views */
+.pill { display: inline-flex; align-items: center; gap: 5px; font-size: 11.5px; font-weight: 600; border-radius: 999px; padding: 3px 10px; white-space: nowrap; }
+.pill:before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex: 0 0 auto; }
+.pill-attention { color: #b4451f; background: #fff2ec; border: 1px solid #ffe0d1; }
+.pill-watch     { color: #8a6a12; background: #fff9e8; border: 1px solid #f7ecc8; }
+.pill-ontrack   { color: #1f7a52; background: #edfbf4; border: 1px solid #cdf0e0; }
+.pill-neutral   { color: #4a6da8; background: #f2f6ff; border: 1px solid #e0e9ff; }
+
+/* --- Provider worklist ------------------------------------------------- */
+.wl-head, .wl-row { display: grid; grid-template-columns: 1.5fr 1.35fr .5fr 1fr .9fr; gap: 10px; align-items: center; }
+.wl-head { font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: #8a93a7; padding: 0 10px 8px; }
+.wl-row { padding: 11px 10px; border-radius: 10px; border: 1px solid transparent; transition: background .15s ease, border-color .15s ease; }
+.wl-row + .wl-row { margin-top: 2px; }
+.wl-row:hover { background: #f8fbff; border-color: #e6ecff; }
+.wl-row.is-flagged { background: linear-gradient(90deg, rgba(255,242,236,.6), rgba(255,255,255,0) 70%); }
+.wl-name { font-weight: 600; font-size: 13.5px; color: #1f2a44; }
+.wl-sub { font-size: 11.5px; color: #8a93a7; }
+.wl-cell { font-size: 12.5px; color: #61708a; }
+.wl-pod { font-weight: 700; font-size: 13px; color: #385073; }
+
+/* --- Recovery summary --------------------------------------------------- */
+.rs-summary { background: linear-gradient(180deg, rgba(125,191,255,.10), #ffffff); border: 1px solid #e6ecff; border-radius: 12px; padding: 14px 16px; }
+.rs-summary p { font-size: 13.5px; line-height: 1.6; color: #1f2a44; margin: 0; }
+.rs-metric { border: 1px solid #eef2ff; border-radius: 10px; padding: 12px; background: #fff; height: 100%; }
+.rs-metric-label { font-size: 11.5px; color: #61708a; }
+.rs-metric-value { font-weight: 700; font-size: 19px; color: #1f2a44; letter-spacing: -0.01em; }
+.rs-delta { font-size: 11.5px; font-weight: 600; }
+.rs-delta.up { color: #1f7a52; }
+.rs-delta.down { color: #b4451f; }
+.spark { display: flex; align-items: flex-end; gap: 3px; height: 30px; margin-top: 8px; }
+.spark i { flex: 1; display: block; border-radius: 3px 3px 1px 1px; background: linear-gradient(180deg, var(--brand-grad-1), var(--brand-grad-3)); opacity: .85; }
+.rs-flag { display: flex; gap: 10px; align-items: flex-start; font-size: 12.5px; color: #61708a; padding: 9px 0; }
+.rs-flag + .rs-flag { border-top: 1px solid #eef2ff; }
+.rs-flag b { color: #1f2a44; font-weight: 600; }
+
+/* Prose bullets beside a mockup — bold lead-in flows inline with the sentence */
+.prose-note { padding: 10px 0; font-size: 13.5px; line-height: 1.55; color: #61708a; }
+.prose-note + .prose-note { border-top: 1px solid #eef2ff; }
+.prose-note b { color: #1f2a44; font-weight: 600; }
+
+/* --- RTM readiness / billing -------------------------------------------- */
+.rtm-code { border: 1px solid #eef2ff; border-radius: 10px; padding: 12px; background: #fff; height: 100%; }
+.rtm-code-id { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 12.5px; font-weight: 700; color: #385073; }
+.rtm-code-name { font-size: 11.5px; color: #8a93a7; line-height: 1.4; }
+.rtm-meter { height: 7px; border-radius: 999px; background: #eef2ff; overflow: hidden; margin-top: 10px; }
+.rtm-meter span { display: block; height: 100%; border-radius: 999px; background-image: linear-gradient(90deg, var(--brand-grad-1), var(--brand-grad-3)); }
+.rtm-meter.is-short span { background-image: linear-gradient(90deg, #ffd9a8, #ffc078); }
+.rtm-foot { display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; color: #61708a; margin-top: 7px; }
+
+/* --- Chat mockup (extends the .chat-* system already defined above) ------ */
+.chat-log-mock { height: auto; max-height: none; background: #fff; border: 0; padding: 4px 2px; }
+.chat-meta { font-size: 11px; color: #a3adc2; text-align: center; padding: 2px 0 6px; }
+.quick-replies { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.quick-reply { font-size: 12px; font-weight: 600; color: #385073; background: #f7faff; border: 1px solid #e6ecff; border-radius: 999px; padding: 5px 12px; }
+.quick-reply.is-picked { color: #0b1220; background-image: linear-gradient(135deg, var(--brand-grad-1), var(--brand-grad-3)); border-color: #d9e2ff; }
+.typing { display: inline-flex; gap: 3px; align-items: center; }
+.typing i { width: 5px; height: 5px; border-radius: 50%; background: #b9c6e4; animation: typingBounce 1.2s infinite ease-in-out; }
+.typing i:nth-child(2) { animation-delay: .15s; }
+.typing i:nth-child(3) { animation-delay: .3s; }
+@keyframes typingBounce { 0%, 60%, 100% { transform: translateY(0); opacity: .5; } 30% { transform: translateY(-3px); opacity: 1; } }
+
+/* --- "Built on proven healthcare AI" ------------------------------------ */
+.proof-card { border-radius: 14px; border: 1px solid #eaeefc; background: linear-gradient(135deg, #fbfdff, #f5faff); box-shadow: 0 10px 30px rgba(31,65,114,.06); }
+.proof-stat { font-family: "EB Garamond", serif; font-weight: 600; font-size: 30px; line-height: 1; color: #1f2a44; letter-spacing: -0.01em; }
+.proof-stat-label { font-size: 12px; color: #8a93a7; margin-top: 4px; }
+.proof-arrow { display: grid; place-items: center; color: #a7bde4; font-size: 20px; }
+@media (max-width: 767.98px) { .proof-arrow { transform: rotate(90deg); padding: 6px 0; } }
+
+/* --- Responsive: let wide mockups scroll rather than break the page ----- */
+@media (max-width: 767.98px) {
+  .mock-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .mock-scroll > * { min-width: 560px; }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .mock-panel, .chat-message { animation: none; }
+  .typing i { animation: none; }
+}
