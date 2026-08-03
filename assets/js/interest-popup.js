@@ -58,7 +58,7 @@
     '      <div class="ip-head">',
     '        <span class="ip-eyebrow">Early access</span>',
     '        <h2 class="ip-title" id="interestModalTitle">Bring the Recovery Copilot to your practice</h2>',
-    '        <p class="ip-sub">Tell us where to reach you and we\'ll set up a free, no-pressure walkthrough for your team. Early pilot partners get priority onboarding and pilot pricing.</p>',
+    '        <p class="ip-sub">Tell us where to reach you and we\'ll set up a free walkthrough for your team. Early partners get priority onboarding and pilot pricing.</p>',
     '      </div>',
     '      <div class="ip-body">',
     '        <ul class="ip-perks">',
@@ -222,7 +222,7 @@
         email: data.email,
         phone: data.phone || '(not provided)',
         comments: data.comments || '(none)',
-        tcpa_consent: data.tcpa_consent ? 'Yes — consented to calls/texts' : 'No',
+        tcpa_consent: data.tcpa_consent ? 'Yes, consented to calls/texts' : 'No',
         botcheck: data.botcheck
       })
     })

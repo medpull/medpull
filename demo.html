@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>MedPull Demo — See the Recovery Copilot work</title>
-    <meta name="description" content="Walk through an adaptive post-operative check-in and watch it turn into a provider worklist entry, an AI recovery summary, and RTM billing status." />
+    <title>MedPull Demo | See the Recovery Copilot work</title>
+    <meta name="description" content="Walk through an adaptive post-op check-in and watch it turn into a provider worklist entry, an AI recovery summary, and RTM billing status." />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -45,7 +45,7 @@
         <div class="mb-5 text-center">
           <span class="eyebrow">Interactive demo</span>
           <h1 class="hero-title mb-3" style="font-size: clamp(36px,5vw,52px);">See the Recovery Copilot work</h1>
-          <p class="text-muted mb-4" style="max-width: 640px; margin: 0 auto;">Answer a post-op check-in the way one of your patients would, and watch it become a provider worklist entry, an AI recovery summary, and RTM billing progress — live, on the right.</p>
+          <p class="text-muted mb-4" style="max-width: 640px; margin: 0 auto;">Answer a post-op check-in the way a patient would. Watch it become a worklist entry, an AI summary, and RTM billing progress, live on the right.</p>
           <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
             <a href="#booking" class="btn btn-gradient btn-lg px-4">Book a Demo</a>
             <a href="join-waitlist.html" class="btn btn-outline-primary btn-lg px-4">Join Waitlist</a>
@@ -60,38 +60,38 @@
           </div>
           <div class="row g-3" id="scenarioPicker">
             <div class="col-md-4">
-              <button class="card playful-card demo-card w-100 h-100 text-start border-0 p-0" data-scenario="tka" type="button" aria-pressed="true">
-                <div class="card-body p-4">
+              <button class="scenario-card h-100" data-scenario="tka" type="button" aria-pressed="true">
+                <div class="p-4">
                   <div class="d-flex justify-content-between align-items-start mb-1">
                     <span class="wl-name">Maria Alvarez</span>
                     <span class="pill pill-neutral">POD 14</span>
                   </div>
                   <div class="wl-sub">Total knee arthroplasty</div>
-                  <p class="card-text text-muted small mb-0 mt-2">Two weeks out. Range of motion improving, but something changed this week.</p>
+                  <p class="text-muted small mb-0 mt-2">Two weeks out. Range of motion improving, but something changed this week.</p>
                 </div>
               </button>
             </div>
             <div class="col-md-4">
-              <button class="card playful-card demo-card w-100 h-100 text-start border-0 p-0" data-scenario="acl" type="button" aria-pressed="false">
-                <div class="card-body p-4">
+              <button class="scenario-card h-100" data-scenario="acl" type="button" aria-pressed="false">
+                <div class="p-4">
                   <div class="d-flex justify-content-between align-items-start mb-1">
                     <span class="wl-name">James Whitfield</span>
                     <span class="pill pill-neutral">POD 21</span>
                   </div>
                   <div class="wl-sub">ACL reconstruction</div>
-                  <p class="card-text text-muted small mb-0 mt-2">Young, active, and quietly skipping physical therapy sessions.</p>
+                  <p class="text-muted small mb-0 mt-2">Young, active, and quietly skipping physical therapy sessions.</p>
                 </div>
               </button>
             </div>
             <div class="col-md-4">
-              <button class="card playful-card demo-card w-100 h-100 text-start border-0 p-0" data-scenario="rcr" type="button" aria-pressed="false">
-                <div class="card-body p-4">
+              <button class="scenario-card h-100" data-scenario="rcr" type="button" aria-pressed="false">
+                <div class="p-4">
                   <div class="d-flex justify-content-between align-items-start mb-1">
                     <span class="wl-name">Rachel Okafor</span>
                     <span class="pill pill-neutral">POD 9</span>
                   </div>
                   <div class="wl-sub">Rotator cuff repair</div>
-                  <p class="card-text text-muted small mb-0 mt-2">Early days. Sleep is the thing that usually goes wrong first.</p>
+                  <p class="text-muted small mb-0 mt-2">Early days. Sleep is the thing that usually goes wrong first.</p>
                 </div>
               </button>
             </div>
@@ -114,15 +114,15 @@
               </div>
               <div class="mock-body">
                 <div class="chat-meta" id="chatMeta">Day 14 · Total knee arthroplasty</div>
-                <div id="demoChatLog" class="chat-log" style="height: 300px; max-height: 300px;"></div>
+                <div id="demoChatLog" class="chat-log" style="height: 250px; max-height: 250px;"></div>
                 <div class="quick-replies mt-3" id="demoReplies"></div>
                 <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top">
                   <span class="wl-sub" id="chatProgress">Question 1 of 4</span>
-                  <button class="btn btn-outline-secondary btn-sm" id="demoReset" type="button">Start over</button>
+                  <button class="btn-quiet" id="demoReset" type="button">Start over</button>
                 </div>
               </div>
             </div>
-            <p class="small text-muted mt-3 mb-0">In production this arrives as a plain text message — no app, no portal login, in the patient's language.</p>
+            <p class="small text-muted mt-3 mb-0">In production this arrives as a text message. No app, no portal login, in the patient's language.</p>
           </div>
 
           <!-- Provider side -->
@@ -148,7 +148,7 @@
                     <div class="wl-cell" id="wlReason">No check-in yet today</div>
                     <div class="wl-pod" id="wlPod">14</div>
                     <div><span class="pill pill-neutral" id="wlStatus">Pending</span></div>
-                    <div class="wl-cell" id="wlLast">—</div>
+                    <div class="wl-cell" id="wlLast">Not yet</div>
                   </div>
                 </div>
               </div>
@@ -212,7 +212,7 @@
               <div class="card-body p-4 p-lg-5">
                 <div class="text-center mb-4">
                   <h3 class="fw-bold mb-2">Ready to see this on your own patients?</h3>
-                  <p class="text-muted">Schedule a personalized walkthrough to see how the Recovery Copilot fits your procedure mix and post-op follow-up workflow.</p>
+                  <p class="text-muted">See how the Recovery Copilot fits your procedure mix and post-op follow-up workflow.</p>
                 </div>
 
                 <!-- Google Calendar Appointment Scheduling -->

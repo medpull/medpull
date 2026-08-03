@@ -19,7 +19,7 @@
       rtm: { days: 9, mins: 12 },
       steps: [
         {
-          q: 'Hi Maria — quick check-in. How would you rate your knee pain right now, 0 to 10?',
+          q: 'Hi Maria, quick check-in. How would you rate your knee pain right now, 0 to 10?',
           replies: [
             { label: 'About a 7', pain: 7, risk: 3, note: 'Pain 7/10, up from 4 last week' },
             { label: 'About a 4', pain: 4, risk: 0, note: 'Pain stable at 4/10' },
@@ -28,8 +28,8 @@
         },
         {
           q: (a) => a.pain >= 6
-            ? 'That’s up from a 4 last week, so let’s dig in. Is it worse when you’re resting, or when you’re moving?'
-            : 'Good — that tracks with where we’d expect you at day 14. Is it worse when you’re resting, or when you’re moving?',
+            ? 'That’s up from a 4 last week. Is it worse when you’re resting, or when you’re moving?'
+            : 'That tracks with where we’d expect you at day 14. Is it worse when you’re resting, or when you’re moving?',
           replies: [
             { label: 'Mostly at night', risk: 2, note: 'Night waking reported' },
             { label: 'When I’m moving', risk: 1, note: 'Pain on movement' },
@@ -44,7 +44,7 @@
           ],
         },
         {
-          q: 'Last one — how many of your home exercise sessions did you finish this week?',
+          q: 'Last one. How many of your home exercise sessions did you finish this week?',
           replies: [
             { label: 'All of them', adherence: 100, risk: -1 },
             { label: 'Most of them', adherence: 86, risk: 0 },
@@ -59,7 +59,7 @@
       rtm: { days: 14, mins: 16 },
       steps: [
         {
-          q: 'Hi James — checking in on week three. How’s the knee feeling overall?',
+          q: 'Hi James, checking in on week three. How’s the knee feeling overall?',
           replies: [
             { label: 'Pretty good', pain: 3, risk: 0 },
             { label: 'Stiff and sore', pain: 5, risk: 1, note: 'Stiffness and soreness at week 3' },
@@ -106,7 +106,7 @@
       rtm: { days: 5, mins: 6 },
       steps: [
         {
-          q: 'Hi Rachel — day nine. How well did you sleep last night?',
+          q: 'Hi Rachel, day nine. How well did you sleep last night?',
           replies: [
             { label: 'Badly, pain woke me', pain: 7, risk: 3, note: 'Sleep disrupted by shoulder pain' },
             { label: 'So-so', pain: 5, risk: 1, note: 'Interrupted sleep' },
@@ -118,7 +118,7 @@
           replies: [
             { label: 'Yes, always', risk: -1 },
             { label: 'Mostly', risk: 1 },
-            { label: 'Taking it off a lot', risk: 3, note: 'Sling non-adherence — re-injury risk' },
+            { label: 'Taking it off a lot', risk: 3, note: 'Sling non-adherence, re-injury risk' },
           ],
         },
         {
@@ -240,7 +240,7 @@
     }
     return '<b>' + n + ' is recovering as expected.</b> ' + reasons +
       ' Trajectory is consistent with the expected path for ' + scenario.procedure.toLowerCase() +
-      ' at day ' + scenario.pod + '. No action needed — continue routine check-ins.';
+      ' at day ' + scenario.pod + '. No action needed. Continue routine check-ins.';
   }
 
   function finish() {
@@ -319,7 +319,7 @@
     $('#wlProc').textContent = scenario.procedure;
     $('#wlPod').textContent = scenario.pod;
     $('#wlReason').textContent = 'No check-in yet today';
-    $('#wlLast').textContent = '—';
+    $('#wlLast').textContent = 'Not yet';
     const pill = $('#wlStatus');
     pill.className = 'pill pill-neutral';
     pill.textContent = 'Pending';
@@ -341,9 +341,7 @@
   $$('#scenarioPicker [data-scenario]').forEach((btn) => {
     btn.addEventListener('click', () => {
       $$('#scenarioPicker [data-scenario]').forEach((b) => {
-        const on = b === btn;
-        b.setAttribute('aria-pressed', on ? 'true' : 'false');
-        b.style.boxShadow = on ? '0 0 0 2px var(--brand-grad-1)' : '';
+        b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
       });
       reset(btn.getAttribute('data-scenario'));
     });
@@ -351,8 +349,5 @@
 
   $('#demoReset').addEventListener('click', () => reset());
 
-  // Mark the default scenario as selected and start.
-  const first = $('#scenarioPicker [data-scenario="tka"]');
-  if (first) first.style.boxShadow = '0 0 0 2px var(--brand-grad-1)';
   reset('tka');
 })();

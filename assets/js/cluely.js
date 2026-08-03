@@ -7,12 +7,12 @@
   const y = $('#year');
   if (y) y.textContent = new Date().getFullYear();
 
-  // Typed prompt
+  // Rotating live signal feed in the hero
   const prompts = [
-    'Who needs attention today?',
-    'Summarize Maria’s last 14 days',
-    'Which ACL patients are behind on ROM?',
-    'Is James ready to bill RTM?',
+    '3 patients need attention',
+    'James W. has not checked in for 4 days',
+    'Maria A. flagged: pain up 3 points',
+    'Rachel O. is behind on range of motion',
   ];
   let pi = 0;
   const promptEl = $('#askPrompt');
@@ -29,12 +29,12 @@
 
   // Features grid (simple bento)
   const features = [
-    { t: 'Adaptive check-ins', d: 'Conversational AI that adjusts its questions to the procedure, the post-op day, and what the patient said last time.' },
-    { t: 'Recovery progression', d: 'Pain, range of motion, function, and adherence trended against the expected curve for that specific procedure.' },
-    { t: 'Ranked provider worklist', d: 'Patients sorted by who needs attention, each with the clinical reason already written out.' },
-    { t: 'AI recovery summaries', d: 'Two weeks of check-ins condensed into a paragraph a surgeon reads in fifteen seconds — and exports to the chart.' },
-    { t: 'RTM made simple', d: 'Data days and interactive minutes tracked automatically, so codes surface as ready the moment thresholds are met.' },
-    { t: 'Wearables and clinical data', d: 'Activity, sleep, and chart data joining the same recovery timeline — on the roadmap.' },
+    { t: 'Adaptive check-ins', d: 'Questions adjust to the procedure, the post-op day, and what the patient said last time.' },
+    { t: 'Recovery progression', d: 'Pain, range of motion, function, and adherence trended against the expected curve for that procedure.' },
+    { t: 'Ranked provider worklist', d: 'Patients sorted by who needs attention, each with the clinical reason written out.' },
+    { t: 'AI recovery summaries', d: 'Two weeks of check-ins in a paragraph a surgeon reads in fifteen seconds, ready for the chart.' },
+    { t: 'RTM made simple', d: 'Data days and interactive minutes tracked automatically, so codes surface the moment thresholds are met.' },
+    { t: 'Wearables and clinical data', d: 'Activity, sleep, and chart data joining the same recovery timeline. On the roadmap.' },
   ];
   const grid = $('#featuresGrid');
   if (grid) {
@@ -51,35 +51,6 @@
         </div>`
       )
       .join('');
-  }
-
-  // Testimonials (basic carousel-like scroll)
-  const track = $('#testimonialsTrack');
-  if (track) {
-    const items = [
-      { q: 'Between the six-week and twelve-week visits I genuinely don\'t know how most of my patients are doing. I find out when something has already gone wrong.', a: 'Orthopedic surgeon' },
-      { q: 'We have one nurse calling down a list. She gets through maybe a third of them, and the ones who pick up are usually the ones doing fine.', a: 'Practice administrator' },
-      { q: 'The patients who stop showing up for PT are the ones I worry about, and they\'re exactly the ones nobody hears from.', a: 'Physical therapy lead' },
-      { q: 'I wasn\'t sure if the pain I had at three weeks was normal or a problem. I didn\'t want to bother anyone, so I just waited.', a: 'Post-operative patient' },
-      { q: 'We looked at RTM. Once we worked out what it would take to track the minutes properly, we dropped it.', a: 'Practice administrator' },
-    ];
-    track.innerHTML = items
-      .map(
-        (x) => `
-        <div class="card shadow-sm">
-          <div class="card-body">
-            <p class="mb-2">“${x.q}”</p>
-            <div class="text-muted small">— ${x.a}</div>
-          </div>
-        </div>`
-      )
-      .join('');
-
-    const step = 360; // px
-    const prev = $('#prevTestimonial');
-    const next = $('#nextTestimonial');
-    if (prev) prev.addEventListener('click', () => (track.scrollLeft -= step));
-    if (next) next.addEventListener('click', () => (track.scrollLeft += step));
   }
 
   // Simple forms
